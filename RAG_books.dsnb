@@ -32,17 +32,9 @@
         "hideInIFrame" : false,
         "enabled" : true,
         "forms" : "[]",
-        "result" : {
-          "startTime" : 1749760275192,
-          "endTime" : 1749760275529,
-          "interpreter" : "script.low",
-          "taskStatus" : "SUCCESS",
-          "status" : "SUCCESS",
-          "results" : [ ],
-          "forms" : "[]"
-        },
+        "result" : null,
         "relations" : [ ],
-        "dynamicFormParams" : "{}"
+        "dynamicFormParams" : null
       },
       {
         "row" : 0,
@@ -109,22 +101,9 @@
         "hideInIFrame" : false,
         "enabled" : true,
         "forms" : "[]",
-        "result" : {
-          "startTime" : 1749760279497,
-          "endTime" : 1749760280492,
-          "interpreter" : "script.low",
-          "taskStatus" : "SUCCESS",
-          "status" : "SUCCESS",
-          "results" : [
-            {
-              "message" : "\nPL/SQL procedure successfully completed.\n\n\n---------------------------\n\nPL/SQL procedure successfully completed.\n\n\n---------------------------\n\nCREDENTIAL_NAME      USERNAME                                                                        WINDOWS_DOMAIN    COMMENTS                                                                     ENABLED    \nRAG_CREDENTIAL       ocid1.user.oc1..aaaaaaaafolzomxi6tqsoy6wdnlwj2hxv4ooljhtvfgy4sm722iwxaakgqqq                      {\"comments\":\"Created native credential via DBMS_CLOUD.create_credential\"}    TRUE       \nENCODE_CREDENTIAL    ocid1.user.oc1..aaaaaaaafolzomxi6tqsoy6wdnlwj2hxv4ooljhtvfgy4sm722iwxaakgqqq                      {\"comments\":\"Created native credential via DBMS_CLOUD.create_credential\"}    TRUE       \nAI_CREDENTIAL        ocid1.user.oc1..aaaaaaaafolzomxi6tqsoy6wdnlwj2hxv4ooljhtvfgy4sm722iwxaakgqqq                      {\"comments\":\"Created native credential via DBMS_CLOUD.create_credential\"}    TRUE       \n\n\n---------------------------\n",
-              "type" : "TEXT"
-            }
-          ],
-          "forms" : "[]"
-        },
+        "result" : null,
         "relations" : [ ],
-        "dynamicFormParams" : "{}"
+        "dynamicFormParams" : null
       },
       {
         "row" : 0,
@@ -149,22 +128,9 @@
         "hideInIFrame" : false,
         "enabled" : true,
         "forms" : "[]",
-        "result" : {
-          "startTime" : 1749760287989,
-          "endTime" : 1749760288628,
-          "interpreter" : "script.low",
-          "taskStatus" : "SUCCESS",
-          "status" : "SUCCESS",
-          "results" : [
-            {
-              "message" : "\nOBJECT_NAME               BYTES      CHECKSUM                    CREATED                                LAST_MODIFIED                          \nalice_wonderland.txt          174354 8AhvLKSPSbjq0TNAjEmX4Q==    06-JUN-25 01.24.40.103000000 PM GMT    06-JUN-25 01.24.40.103000000 PM GMT    \nchristmas_carol.txt           189230 bHrwhSuOj6STkpOTV3UUEQ==    06-JUN-25 01.24.55.257000000 PM GMT    06-JUN-25 01.24.55.257000000 PM GMT    \ndorian_gray.txt               465857 GDD70hW8lswgqdKXOWtTUA==    06-JUN-25 01.24.51.726000000 PM GMT    06-JUN-25 01.24.51.726000000 PM GMT    \ndracula.txt                   890394 YN7V6WLQxqxKrtzs3VY+5A==    06-JUN-25 01.25.00.097000000 PM GMT    06-JUN-25 01.25.00.097000000 PM GMT    \nfrankenstein.txt              448928 Hm08lB/kIz77vVgg3pOUYA==    06-JUN-25 01.24.31.657000000 PM GMT    06-JUN-25 01.24.31.657000000 PM GMT    \ngreat_expectations.txt       1058246 rmCsI3cG/rcISlRcy85hLg==    06-JUN-25 01.24.58.463000000 PM GMT    06-JUN-25 01.24.58.463000000 PM GMT    \ngreat_gatsby.txt              306594 a7LNqoCYzV33f0ehwncprQ==    06-JUN-25 01.24.41.847000000 PM GMT    06-JUN-25 01.24.41.847000000 PM GMT    \ngreen_gables.txt              606737 e3VHS9YrwjIKydswGkCz9w==    06-JUN-25 01.24.43.657000000 PM GMT    06-JUN-25 01.24.43.657000000 PM GMT    \nimportance_earnest.txt        141889 IJqF+cNWYH/TH9KFPAxn5w==    06-JUN-25 01.24.45.396000000 PM GMT    06-JUN-25 01.24.45.396000000 PM GMT    \njeckyll_hyde.txt              163530 rl/rmQtBpEElNkohEYgp0w==    06-JUN-25 01.24.56.845000000 PM GMT    06-JUN-25 01.24.56.845000000 PM GMT    \nlittle_women.txt             1113473 HWyvQ3Ul1DuAxGH/Vw4AbQ==    06-JUN-25 01.24.53.572000000 PM GMT    06-JUN-25 01.24.53.572000000 PM GMT    \nmoby_dick.txt                1276288 kSUoE2ZdKWbUN13a7sBnJQ==    06-JUN-25 01.24.33.436000000 PM GMT    06-JUN-25 01.24.33.436000000 PM GMT    \nmonte_christo.txt            2787202 zoZ6ok0Yxi7wD1WJgmKUng==    06-JUN-25 01.24.47.479000000 PM GMT    06-JUN-25 01.24.47.479000000 PM GMT    \npride_prejudice.txt           772419 Cm4iSxsRSSw0vCEl+RqEXw==    06-JUN-25 01.24.35.042000000 PM GMT    06-JUN-25 01.24.35.042000000 PM GMT    \n\nOBJECT_NAME              BYTES      CHECKSUM                    CREATED                                LAST_MODIFIED                          \nromeo_juliet.txt             169541 Ta+oLBVYqol6hAepCORrVA==    06-JUN-25 01.24.36.574000000 PM GMT    06-JUN-25 01.24.36.574000000 PM GMT    \nroom_view.txt                415860 gMM3BMpiqkCkQiU5XhGaqQ==    06-JUN-25 01.24.49.918000000 PM GMT    06-JUN-25 01.24.49.918000000 PM GMT    \nsherlock_holmes.txt          607648 T3HIUuHrMlgy/nSglZ9jjg==    06-JUN-25 01.25.03.876000000 PM GMT    06-JUN-25 01.25.03.876000000 PM GMT    \nsimple_sabotage.txt           75440 3CKpCTS9nij1OUdHHVZUKg==    06-JUN-25 01.24.38.198000000 PM GMT    06-JUN-25 01.24.38.198000000 PM GMT    \nwar_peace.txt               3359652 K5TbXP+iVKKWMkPPgQ0llA==    05-JUN-25 02.59.03.499000000 AM GMT    06-JUN-25 01.25.02.078000000 PM GMT    \nwuthering_heights.txt        693877 7YonogaWJGW+byajD6Onvw==    06-JUN-25 01.25.05.791000000 PM GMT    06-JUN-25 01.25.05.791000000 PM GMT    \n\n20 rows selected. \n\n\n---------------------------\n",
-              "type" : "TEXT"
-            }
-          ],
-          "forms" : "[]"
-        },
+        "result" : null,
         "relations" : [ ],
-        "dynamicFormParams" : "{}"
+        "dynamicFormParams" : null
       },
       {
         "row" : 0,
@@ -230,22 +196,9 @@
         "hideInIFrame" : false,
         "enabled" : true,
         "forms" : "[]",
-        "result" : {
-          "startTime" : 1744144825482,
-          "endTime" : 1744144829057,
-          "interpreter" : "script.low",
-          "taskStatus" : "SUCCESS",
-          "status" : "SUCCESS",
-          "results" : [
-            {
-              "message" : "\n---------------------------\nStatus Code: 200\nText:\n{\"modelId\":\"meta.llama-3.1-70b-instruct\",\"modelVersion\":\"1.0.0\",\"chatResponse\":{\n\"apiFormat\":\"GENERIC\",\"timeCreated\":\"2025-04-08T20:40:29.029Z\",\"choices\":[{\"inde\nx\":0,\"message\":{\"role\":\"ASSISTANT\",\"content\":[{\"type\":\"TEXT\",\"text\":\"Oracle\nCloud Infrastructure (OCI) is a comprehensive cloud platform that provides a\nwide range of services, including computing, storage, networking, and database\nmanagement, to support the deployment and management of applications and\nworkloads in the cloud. OCI offers a secure, scalable, and highly available\ninfrastructure that allows users to build, deploy, and manage modern\napplications and services, while also providing a range of tools and services to\nsupport migration, integration, and management of existing on-premises\nworkloads.\"}],\"toolCalls\":[]},\"finishReason\":\"stop\",\"logprobs\":{}}],\"usage\":{\"co\nmpletionTokens\":98,\"promptTokens\":44,\"totalTokens\":142}}}\n\n\nPL/SQL procedure successfully completed.\n\n",
-              "type" : "TEXT"
-            }
-          ],
-          "forms" : "[]"
-        },
+        "result" : null,
         "relations" : [ ],
-        "dynamicFormParams" : "{}"
+        "dynamicFormParams" : null
       },
       {
         "row" : 0,
@@ -285,22 +238,9 @@
         "hideInIFrame" : false,
         "enabled" : true,
         "forms" : "[]",
-        "result" : {
-          "startTime" : 1749760295384,
-          "endTime" : 1749760300733,
-          "interpreter" : "script.low",
-          "taskStatus" : "SUCCESS",
-          "status" : "SUCCESS",
-          "results" : [
-            {
-              "message" : "\nPL/SQL procedure successfully completed.\n\n\n---------------------------\n\nPL/SQL procedure successfully completed.\n\n\n---------------------------\n\nPROFILE_ID    PROFILE_NAME              STATUS     DESCRIPTION    CREATED                                LAST_MODIFIED                          ORACLE_MAINTAINED    \n          193 OCI_CRED$PROF             ENABLED                   14-APR-25 06.29.19.505837000 PM UTC    14-APR-25 06.29.19.505837000 PM UTC    N                    \n          231 RAG_PROFILE               ENABLED                   12-JUN-25 08.31.36.664948000 PM UTC    12-JUN-25 08.31.36.664948000 PM UTC    N                    \n          226 ENCODE_CREDENTIAL$PROF    ENABLED                   22-MAY-25 09.34.30.600760000 PM UTC    22-MAY-25 09.34.30.600760000 PM UTC    N                    \n\n\n---------------------------\n",
-              "type" : "TEXT"
-            }
-          ],
-          "forms" : "[]"
-        },
+        "result" : null,
         "relations" : [ ],
-        "dynamicFormParams" : "{}"
+        "dynamicFormParams" : null
       },
       {
         "row" : 0,
@@ -341,22 +281,9 @@
         "hideInIFrame" : false,
         "enabled" : true,
         "forms" : "[]",
-        "result" : {
-          "startTime" : 1749760311427,
-          "endTime" : 1749760314311,
-          "interpreter" : "script.low",
-          "taskStatus" : "SUCCESS",
-          "status" : "SUCCESS",
-          "results" : [
-            {
-              "message" : "\nPL/SQL procedure successfully completed.\n\n\n---------------------------\n\nPL/SQL procedure successfully completed.\n\n\n---------------------------\n",
-              "type" : "TEXT"
-            }
-          ],
-          "forms" : "[]"
-        },
+        "result" : null,
         "relations" : [ ],
-        "dynamicFormParams" : "{}"
+        "dynamicFormParams" : null
       },
       {
         "row" : 0,
@@ -379,22 +306,9 @@
         "hideInIFrame" : false,
         "enabled" : true,
         "forms" : "[]",
-        "result" : {
-          "startTime" : 1749760500282,
-          "endTime" : 1749760500670,
-          "interpreter" : "script.low",
-          "taskStatus" : "SUCCESS",
-          "status" : "SUCCESS",
-          "results" : [
-            {
-              "message" : "\nCOUNT(*)    \n      16074 \n\n\n---------------------------\n",
-              "type" : "TEXT"
-            }
-          ],
-          "forms" : "[]"
-        },
+        "result" : null,
         "relations" : [ ],
-        "dynamicFormParams" : "{}"
+        "dynamicFormParams" : null
       },
       {
         "row" : 0,
@@ -418,22 +332,9 @@
         "hideInIFrame" : false,
         "enabled" : true,
         "forms" : "[]",
-        "result" : {
-          "startTime" : 1749091614344,
-          "endTime" : 1749091614745,
-          "interpreter" : "script.low",
-          "taskStatus" : "SUCCESS",
-          "status" : "SUCCESS",
-          "results" : [
-            {
-              "message" : "PIPELINE_ID   PIPELINE_NAME           PIPELINE_TYPE   JOB_ID   JOB_NAME       STATUS      START_DATE                            END_DATE                              INSTANCE_ID   SESSION_ID   ERROR_NUMBER   ERROR_MESSAGE   CPU_USED              JOB_OUTPUT   \n          412 RAG_INDEX$VECPIPELINE   VECTOR_INDEX      989842 PIPELINE$412   SUCCEEDED   05-JUN-25 02.44.40.882758000 AM UTC   05-JUN-25 02.45.50.882758000 AM UTC               2 48767,1404                0                 +00 00:00:00.540000                \n\n\n\n---------------------------\n",
-              "type" : "TEXT"
-            }
-          ],
-          "forms" : "[]"
-        },
+        "result" : null,
         "relations" : [ ],
-        "dynamicFormParams" : "{}"
+        "dynamicFormParams" : null
       },
       {
         "row" : 0,
@@ -456,22 +357,9 @@
         "hideInIFrame" : false,
         "enabled" : true,
         "forms" : "[]",
-        "result" : {
-          "startTime" : 1744145151932,
-          "endTime" : 1744145152300,
-          "interpreter" : "script.low",
-          "taskStatus" : "SUCCESS",
-          "status" : "SUCCESS",
-          "results" : [
-            {
-              "message" : "INDEX_ID   INDEX_NAME   STATUS    DESCRIPTION   CREATED                               LAST_MODIFIED                         ORACLE_MAINTAINED   \n       385 RAG_INDEX    ENABLED                 08-APR-25 08.40.52.785393000 PM UTC   08-APR-25 08.40.52.785393000 PM UTC   N                   \n\n\n\n---------------------------\n",
-              "type" : "TEXT"
-            }
-          ],
-          "forms" : "[]"
-        },
+        "result" : null,
         "relations" : [ ],
-        "dynamicFormParams" : "{}"
+        "dynamicFormParams" : null
       },
       {
         "row" : 0,
@@ -494,22 +382,9 @@
         "hideInIFrame" : false,
         "enabled" : true,
         "forms" : "[]",
-        "result" : {
-          "startTime" : 1749091634008,
-          "endTime" : 1749091634409,
-          "interpreter" : "sql.low",
-          "taskStatus" : "SUCCESS",
-          "status" : "SUCCESS",
-          "results" : [
-            {
-              "message" : "PIPELINE_ID\tPIPELINE_NAME\tPIPELINE_TYPE\tSTATUS\tDESCRIPTION\tCREATED\tLAST_MODIFIED\tLAST_EXECUTION\tOPERATION_ID\tSTATUS_TABLE\tORACLE_MAINTAINED\n412\tRAG_INDEX$VECPIPELINE\tVECTOR_INDEX\tSTARTED\t\t2025-06-05 02:44:35.407556 UTC\t2025-06-05 02:44:35.639388 UTC\t2025-06-05 02:44:40.887872 UTC\t569\tPIPELINE$412$569_STATUS\tN\n",
-              "type" : "TABLE"
-            }
-          ],
-          "forms" : "[]"
-        },
+        "result" : null,
         "relations" : [ ],
-        "dynamicFormParams" : "{}"
+        "dynamicFormParams" : null
       },
       {
         "row" : 0,
@@ -532,22 +407,9 @@
         "hideInIFrame" : false,
         "enabled" : true,
         "forms" : "[]",
-        "result" : {
-          "startTime" : 1744145160563,
-          "endTime" : 1744145160928,
-          "interpreter" : "sql.low",
-          "taskStatus" : "SUCCESS",
-          "status" : "SUCCESS",
-          "results" : [
-            {
-              "message" : "PIPELINE_ID\tPIPELINE_NAME\tPIPELINE_TYPE\tATTRIBUTE_NAME\tATTRIBUTE_VALUE\tLAST_MODIFIED\n385\tRAG_INDEX$VECPIPELINE\tVECTOR_INDEX\tcredential_name\tRAG_CREDENTIAL\t2025-04-08 20:40:53.448546 UTC\n385\tRAG_INDEX$VECPIPELINE\tVECTOR_INDEX\tinterval\t1440\t2025-04-08 20:40:53.448546 UTC\n385\tRAG_INDEX$VECPIPELINE\tVECTOR_INDEX\tlocation\thttps://objectstorage.us-chicago-1.oraclecloud.com/n/orasenatdpltintegration03/b/JoeHahnRagBucket/o/rag/doc/\t2025-04-08 20:40:53.448546 UTC\n385\tRAG_INDEX$VECPIPELINE\tVECTOR_INDEX\tvector_index_name\tRAG_INDEX\t2025-04-08 20:40:53.448546 UTC\n",
-              "type" : "TABLE"
-            }
-          ],
-          "forms" : "[]"
-        },
+        "result" : null,
         "relations" : [ ],
-        "dynamicFormParams" : "{}"
+        "dynamicFormParams" : null
       },
       {
         "row" : 0,
@@ -570,22 +432,9 @@
         "hideInIFrame" : false,
         "enabled" : true,
         "forms" : "[]",
-        "result" : {
-          "startTime" : 1749760506381,
-          "endTime" : 1749760506890,
-          "interpreter" : "script.low",
-          "taskStatus" : "SUCCESS",
-          "status" : "SUCCESS",
-          "results" : [
-            {
-              "message" : "\nPIPELINE_ID    PIPELINE_NAME            PIPELINE_TYPE    JOB_ID     JOB_NAME        STATUS       START_DATE                             END_DATE                               INSTANCE_ID    SESSION_ID     ERROR_NUMBER    ERROR_MESSAGE    CPU_USED               JOB_OUTPUT    \n           419 RAG_INDEX$VECPIPELINE    VECTOR_INDEX        1045030 PIPELINE$419    SUCCEEDED    12-JUN-25 08.31.59.264558000 PM UTC    12-JUN-25 08.33.03.264558000 PM UTC                 3 50676,15793                  0                  +00 00:00:01.210000                  \n\n\n---------------------------\n",
-              "type" : "TEXT"
-            }
-          ],
-          "forms" : "[]"
-        },
+        "result" : null,
         "relations" : [ ],
-        "dynamicFormParams" : "{}"
+        "dynamicFormParams" : null
       },
       {
         "row" : 0,
@@ -608,22 +457,9 @@
         "hideInIFrame" : false,
         "enabled" : true,
         "forms" : "[]",
-        "result" : {
-          "startTime" : 1749091363057,
-          "endTime" : 1749091363401,
-          "interpreter" : "script.low",
-          "taskStatus" : "SUCCESS",
-          "status" : "SUCCESS",
-          "results" : [
-            {
-              "message" : "\nno rows selected\n",
-              "type" : "TEXT"
-            }
-          ],
-          "forms" : "[]"
-        },
+        "result" : null,
         "relations" : [ ],
-        "dynamicFormParams" : "{}"
+        "dynamicFormParams" : null
       },
       {
         "row" : 0,
@@ -646,22 +482,9 @@
         "hideInIFrame" : false,
         "enabled" : true,
         "forms" : "[]",
-        "result" : {
-          "startTime" : 1744145175908,
-          "endTime" : 1744145176281,
-          "interpreter" : "sql.low",
-          "taskStatus" : "SUCCESS",
-          "status" : "SUCCESS",
-          "results" : [
-            {
-              "message" : "JOB_NAME\tJOB_SUBNAME\tJOB_STYLE\tJOB_CREATOR\tCLIENT_ID\tGLOBAL_UID\tPROGRAM_OWNER\tPROGRAM_NAME\tJOB_TYPE\tJOB_ACTION\tNUMBER_OF_ARGUMENTS\tSCHEDULE_OWNER\tSCHEDULE_NAME\tSCHEDULE_TYPE\tSTART_DATE\tREPEAT_INTERVAL\tEVENT_QUEUE_OWNER\tEVENT_QUEUE_NAME\tEVENT_QUEUE_AGENT\tEVENT_CONDITION\tEVENT_RULE\tFILE_WATCHER_OWNER\tFILE_WATCHER_NAME\tEND_DATE\tJOB_CLASS\tENABLED\tAUTO_DROP\tRESTART_ON_RECOVERY\tRESTART_ON_FAILURE\tSTATE\tJOB_PRIORITY\tRUN_COUNT\tUPTIME_RUN_COUNT\tMAX_RUNS\tFAILURE_COUNT\tUPTIME_FAILURE_COUNT\tMAX_FAILURES\tRETRY_COUNT\tLAST_START_DATE\tLAST_RUN_DURATION\tNEXT_RUN_DATE\tSCHEDULE_LIMIT\tMAX_RUN_DURATION\tLOGGING_LEVEL\tSTORE_OUTPUT\tSTOP_ON_WINDOW_CLOSE\tINSTANCE_STICKINESS\tRAISE_EVENTS\tSYSTEM\tJOB_WEIGHT\tNLS_ENV\tSOURCE\tNUMBER_OF_DESTINATIONS\tDESTINATION_OWNER\tDESTINATION\tCREDENTIAL_OWNER\tCREDENTIAL_NAME\tINSTANCE_ID\tDEFERRED_DROP\tALLOW_RUNS_IN_RESTRICTED_MODE\tCOMMENTS\tFLAGS\tRESTARTABLE\tHAS_CONSTRAINTS\tCONNECT_CREDENTIAL_OWNER\tCONNECT_CREDENTIAL_NAME\tFAIL_ON_SCRIPT_ERROR\nPIPELINE$385\t\tREGULAR\tSAIRAG\t\t\t\t\tSTORED_PROCEDURE\tC##CLOUD$SERVICE.DBMS_CLOUD_PIPELINE.RUN_PIPELINE\t2\t\t\tCALENDAR\t2025-04-08 20:40:58.659876 UTC\tFREQ=MINUTELY; INTERVAL=1440\t\t\t\t\t\t\t\t\tMEDIUM\tTRUE\tFALSE\tTRUE\tTRUE\tSCHEDULED\t3\t1\t\t\t0\t\t\t0\t2025-04-08 20:43:51.664801 UTC\t0 0:1:15.799426\t2025-04-09 20:40:58.659876 UTC\t\t\tFULL\tTRUE\tFALSE\tTRUE\t\tFALSE\t1\tNLS_LANGUAGE='AMERICAN' NLS_TERRITORY='AMERICA' NLS_CURRENCY='$' NLS_ISO_CURRENCY='AMERICA' NLS_NUMERIC_CHARACTERS='.,' NLS_CALENDAR='GREGORIAN' NLS_DATE_FORMAT='DD-MON-RR' NLS_DATE_LANGUAGE='AMERICAN' NLS_SORT='BINARY' NLS_TIME_FORMAT='HH.MI.SSXFF AM' NLS_TIMESTAMP_FORMAT='DD-MON-RR HH.MI.SSXFF AM' NLS_TIME_TZ_FORMAT='HH.MI.SSXFF AM TZR' NLS_TIMESTAMP_TZ_FORMAT='DD-MON-RR HH.MI.SSXFF AM TZR' NLS_DUAL_CURRENCY='$' NLS_COMP='BINARY' NLS_LENGTH_SEMANTICS='BYTE' NLS_NCHAR_CONV_EXCP='FALSE'\t\t1\t\t\t\t\t\tFALSE\tFALSE\tPipeline RAG_INDEX$VECPIPELINE\t9112752371304720\tTRUE\tFALSE\t\t\tFALSE\n",
-              "type" : "TABLE"
-            }
-          ],
-          "forms" : "[]"
-        },
+        "result" : null,
         "relations" : [ ],
-        "dynamicFormParams" : "{}"
+        "dynamicFormParams" : null
       },
       {
         "row" : 0,
@@ -684,22 +507,9 @@
         "hideInIFrame" : false,
         "enabled" : true,
         "forms" : "[]",
-        "result" : {
-          "startTime" : 1744145219567,
-          "endTime" : 1744145219964,
-          "interpreter" : "script.low",
-          "taskStatus" : "SUCCESS",
-          "status" : "SUCCESS",
-          "results" : [
-            {
-              "message" : "LOG_ID   LOG_DATE                                 OWNER    JOB_NAME       JOB_SUBNAME   STATUS      ERROR#   REQ_START_DATE                        ACTUAL_START_DATE                     RUN_DURATION          INSTANCE_ID   SESSION_ID    SLAVE_PID   CPU_USED              CREDENTIAL_OWNER   CREDENTIAL_NAME   DESTINATION_OWNER   DESTINATION   ADDITIONAL_INFO   ERRORS   OUTPUT   BINARY_ERRORS   BINARY_OUTPUT   \n  646376 08-APR-25 08.45.07.465165000 PM +00:00   SAIRAG   PIPELINE$385                 SUCCEEDED          0 08-APR-25 08.40.58.659876000 PM UTC   08-APR-25 08.43.51.664900000 PM UTC   +00 00:01:16.000000               4 12912,61778   9432        +00 00:00:00.720000                                                                                                                                              \n\n\n\n---------------------------\n",
-              "type" : "TEXT"
-            }
-          ],
-          "forms" : "[]"
-        },
+        "result" : null,
         "relations" : [ ],
-        "dynamicFormParams" : "{}"
+        "dynamicFormParams" : null
       },
       {
         "row" : 0,
@@ -722,22 +532,9 @@
         "hideInIFrame" : false,
         "enabled" : true,
         "forms" : "[]",
-        "result" : {
-          "startTime" : 1749760510827,
-          "endTime" : 1749760511252,
-          "interpreter" : "sql.low",
-          "taskStatus" : "SUCCESS",
-          "status" : "SUCCESS",
-          "results" : [
-            {
-              "message" : "CONTENT\tATTRIBUTES\tEMBEDDING\n migratory sheep who  seemed worthy, and give them a few hours in the pastures of the  permanent. Tea at a Renaissance villa? Nothing had been said about it  yet. But if it did come to that—how Lucy would enjoy it!    A few days ago and Lucy would have felt the same. But the joys of life  were grouping themselves anew. A drive in the hills with Mr. Eager and  Miss Bartlett—even if culminating in a residential tea-party—was no  longer the greatest of them. She echoed the raptures of Charlotte  somewhat faintly. Only when she heard that Mr. Beebe was also coming  did her thanks become more sincere.    “So we shall be a _partie carrée_,” said the chaplain. “In these days  of toil and tumult one has great needs of the country and its message  of purity. Andate via! andate presto, presto! Ah, the town! Beautiful  as it is, it is the town.”    They assented.    “This very square—so I am told—witnessed yesterday the most sordid of  tragedies. To one who loves the Florence of Dante and Savonarola there  is something \t{\"object_name\":\"room_view.txt\",\"object_size\":415860,\"last_modified\":\"2025-06-06T13:24:49+00:00\",\"location_uri\":\"https://objectstorage.us-chicago-1.oraclecloud.com/n/orasenatdpltintegration03/b/JoeHahnRagBucket/o/rag/doc/\",\"start_offset\":92161,\"end_offset\":93184}\t[4.85420227E-004,-4.01687622E-003,1.8951416E-002,1.64642334E-002,-5.41687012E-003,1.77001953E-002,3.21044922E-002,-3.56674194E-003,1.28936768E-002,3.93066406E-002,-4.64782715E-002,-8.7890625E-003,5.09643555E-002,-4.64248657E-003,5.60379028E-003,-2.13623047E-002,-1.52435303E-002,4.12597656E-002,2.70080566E-002,-2.85491943E-002,1.26800537E-002,-2.79693604E-002,-9.88006592E-003,-1.63574219E-002,5.82580566E-002,4.22668457E-002,-2.43835449E-002,7.49969482E-003,4.1809082E-002,3.34777832E-002,3.92456055E-002,-6.71386719E-002,2.65350342E-002,5.04150391E-002,-5.79528809E-002,-1.40609741E-002,-3.67126465E-002,2.20947266E-002,-1.86309814E-002,2.34680176E-002,2.89001465E-002,-5.11169434E-004,-9.16748047E-002,1.12915039E-002,-8.13598633E-002,-7.06100464E-003,-1.12533569E-002,2.98156738E-002,3.53393555E-002,-4.63256836E-002,1.3710022E-002,-1.40762329E-002,2.21099854E-002,-2.53143311E-002,-5.01708984E-002,-9.07897949E-003,1.52740479E-002,1.28746033E-003,2.96020508E-002,-5.61523438E-002,-4.86755371E-002,-1.42822266E-002,4.12597656E-002,2.79388428E-002,-1.171875E-002,-2.49786377E-002,2.79998779E-002,2.47497559E-002,3.52478027E-002,-1.46636963E-002,-7.76672363E-003,4.4128418E-002,1.71051025E-002,-4.73022461E-002,-2.5806427E-003,6.15844727E-002,-1.86309814E-002,3.36608887E-002,1.53884888E-002,-2.53143311E-002,1.71356201E-002,-1.89666748E-002,-3.78608704E-003,-5.20629883E-002,3.125E-002,-2.35443115E-002,1.12838745E-002,-1.82800293E-002,2.0401001E-002,1.84326172E-002,-6.4201355E-003,-5.53894043E-002,2.61688232E-002,4.59899902E-002,2.37121582E-002,-3.53088379E-002,2.81982422E-002,-1.28250122E-002,2.18200684E-002,-4.26940918E-002,6.52313232E-004,-2.60467529E-002,-4.84008789E-002,1.31149292E-002,-2.00042725E-002,1.24664307E-002,-2.02178955E-002,2.70996094E-002,1.85699463E-002,3.63769531E-002,-1.04751587E-002,-1.29547119E-002,3.58276367E-002,-4.9407959E-002,3.05480957E-002,-1.26876831E-002,-5.77449799E-004,7.69042969E-002,2.46734619E-002,-1.3633728E-002,-2.59971619E-003,2.83813477E-002,-5.23071289E-002,3.97949219E-002,-1.69372559E-002,-2.93426514E-002,1.65271759E-003,2.34832764E-002,7.95898438E-002,-2.02178955E-002,2.23236084E-002,3.2409668E-002,-7.50732422E-002,-4.93164062E-002,-5.078125E-002,2.29492188E-002,-1.7364502E-002,1.5838623E-002,-9.78088379E-003,-2.23846436E-002,5.77697754E-002,-1.66168213E-002,-1.52511597E-002,1.80969238E-002,2.31018066E-002,1.35269165E-002,2.89916992E-002,2.36749649E-004,-1.94091797E-002,2.94036865E-002,-2.96478271E-002,2.40478516E-002,1.54724121E-002,-1.20925903E-002,-5.00488281E-002,-3.95536423E-004,-5.52368164E-002,1.91192627E-002,-2.9800415E-002,1.13067627E-002,5.46264648E-002,-1.47247314E-002,-1.92108154E-002,2.30865479E-002,-2.05688477E-002,-3.46565247E-003,-3.14025879E-002,7.23648071E-003,2.91900635E-002,5.75256348E-002,2.23350525E-003,-3.61022949E-002,1.98364258E-002,3.32336426E-002,-1.67236328E-002,2.24761963E-002,-4.34265137E-002,-2.92205811E-002,-3.04985046E-003,6.09741211E-002,3.61022949E-002,-3.31726074E-002,-4.7668457E-002,6.26831055E-002,-2.07672119E-002,6.64672852E-002,-2.02941895E-002,1.41983032E-002,5.56564331E-003,-1.56173706E-002,-2.24456787E-002,3.125E-002,-3.80249023E-002,-4.94480133E-004,-1.96685791E-002,4.53186035E-003,5.29098511E-003,1.76544189E-002,-1.62811279E-002,8.76617432E-003,-6.23703003E-003,9.17053223E-003,-9.07897949E-003,-1.06735229E-002,-4.37011719E-002,-2.42996216E-003,-1.89056396E-002,3.80554199E-002,1.12762451E-002,3.66592407E-003,-1.87988281E-002,-2.61230469E-002,1.19857788E-002,-4.22973633E-002,-2.79083252E-002,1.78375244E-002,-2.7961731E-003,2.75993347E-003,4.47463989E-003,8.61358643E-003,6.04629517E-003,3.18908691E-002,-6.09588623E-003,-6.98471069E-003,-3.92150879E-002,3.42712402E-002,-2.00500488E-002,3.55529785E-002,-1.9241333E-002,4.31518555E-002,1.08032227E-002,-4.69970703E-002,3.79180908E-003,2.33154297E-002,-2.63214111E-002,2.63404846E-003,-2.01568604E-002,1.24816895E-002,-1.21231079E-002,6.87789917E-003,3.97644043E-002,4.69055176E-002,-4.38690186E-003,-1.88903809E-002,4.73022461E-002,-3.42102051E-002,2.60314941E-002,-2.43988037E-002,5.64575195E-004,2.90527344E-002,-1.03607178E-002,1.36566162E-002,2.77099609E-002,-1.28326416E-002,2.63977051E-003,2.92510986E-002,-3.47900391E-003,1.39083862E-002,-6.7024231E-003,1.96838379E-003,1.30233765E-002,4.71191406E-002,-2.34127045E-004,-7.99560547E-003,-6.85424805E-002,1.09634399E-002,-5.76400757E-003,2.3147583E-002,-4.02526855E-002,-2.38952637E-002,4.93164062E-002,1.32080078E-001,-2.84576416E-003,1.00158691E-001,5.56182861E-003,-2.41699219E-002,-3.4362793E-002,-1.87988281E-002,-3.42178345E-003,4.04968262E-002,-2.11029053E-002,1.08413696E-002,-3.01742554E-003,-1.85394287E-002,-1.57012939E-002,-5.13839722E-003,9.6282959E-003,-2.0980835E-002,-4.15344238E-002,-1.91650391E-002,2.0980835E-002,4.37011719E-002,-1.86562538E-004,2.06947327E-003,-4.19998169E-003,6.58416748E-003,8.27026367E-002,5.31616211E-002,-1.96228027E-002,8.16345215E-003,1.18408203E-002,1.71203613E-002,-3.08227539E-002,-4.89807129E-003,-9.93347168E-003,5.50842285E-002,2.76641846E-002,-1.36260986E-002,-1.12609863E-002,-7.51953125E-002,7.38525391E-002,-4.01000977E-002,3.1829834E-002,8.67919922E-002,-3.30200195E-002,-1.60675049E-002,-7.45391846E-003,7.45239258E-002,7.41577148E-002,6.9152832E-002,5.31005859E-003,7.01522827E-003,-1.09741211E-001,-2.20184326E-002,-2.5604248E-002,6.05163574E-002,-5.07202148E-002,-3.19213867E-002,-6.67190552E-003,-2.05841064E-002,2.24609375E-002,-1.76391602E-002,-1.33590698E-002,2.38800049E-002,1.96533203E-002,2.77900696E-003,-8.97884369E-004,-3.95202637E-002,-2.53295898E-002,6.30187988E-003,1.53045654E-002,-1.28326416E-002,1.00021362E-002,-1.15356445E-002,2.4520874E-002,-2.79541016E-002,8.16345215E-003,5.75256348E-003,5.46875E-002,3.19213867E-002,-3.24707031E-002,-8.46099854E-003,3.1414032E-003,6.57348633E-002,3.97033691E-002,-3.91845703E-002,-2.46276855E-002,6.98852539E-002,7.61032104E-003,-3.70788574E-003,-6.53686523E-002,1.17015839E-003,-5.85632324E-002,-2.32391357E-002,3.72924805E-002,-7.08389282E-003,-4.85839844E-002,1.98974609E-002,-2.72979736E-002,1.81732178E-002,4.71801758E-002,-3.70178223E-002,8.02612305E-003,-4.02526855E-002,-5.18493652E-002,-3.69262695E-002,3.10211182E-002,-1.27029419E-003,-3.87573242E-002,6.19506836E-003,-8.59069824E-003,-3.1463623E-002,1.21002197E-002,-4.01916504E-002,4.78515625E-002,2.83966064E-002,1.43127441E-002,2.12860107E-003,5.81054688E-002,1.58233643E-002,9.6206665E-003,-2.9586792E-002,-5.59806824E-004,-7.48825073E-003,3.27148438E-002,-1.3961792E-002,1.39007568E-002,1.6998291E-002,-5.44128418E-002,-3.00598145E-002,3.49121094E-002,-1.76429749E-003,1.62601471E-003,-6.29043579E-003,-2.20031738E-002,1.12915039E-002,3.82080078E-002,-6.14929199E-003,2.10723877E-002,-4.6295166E-002,-4.30603027E-002,4.76074219E-002,-7.38525391E-002,2.54058838E-002,-3.74145508E-002,-1.95465088E-002,9.16290283E-003,7.69805908E-003,5.56564331E-003,-3.01742554E-003,6.08444214E-004,1.62200928E-002,-1.85241699E-002,1.66473389E-002,-1.00631714E-002,1.86920166E-002,-2.41699219E-002,2.52990723E-002,-2.07672119E-002,1.257658E-005,-1.16062164E-003,-2.28424072E-002,-1.72576904E-002,-3.59191895E-002,-4.15039062E-002,-4.89425659E-003,1.60369873E-002,1.42593384E-002,1.84783936E-002,-2.85797119E-002,-1.3999939E-003,2.87780762E-002,1.05529785E-001,1.06124878E-002,5.32836914E-002,-4.1885376E-003,6.55517578E-002,3.42712402E-002,1.61647797E-004,-4.58679199E-002,-7.44247437E-003,9.42993164E-003,1.66778564E-002,1.28250122E-002,-8.39710236E-004,2.96478271E-002,-8.44573975E-003,1.46255493E-002,3.18603516E-002,-8.29219818E-004,1.22451782E-002,1.48162842E-002,-7.60498047E-002,-1.95617676E-002,-7.96508789E-003,7.72857666E-003,1.98669434E-002,7.57217407E-003,-2.784729E-002,1.18560791E-002,-1.57012939E-002,1.47399902E-002,4.78363037E-003,9.6206665E-003,1.02462769E-002,1.73339844E-002,7.65991211E-003,9.14001465E-003,-2.96936035E-002,1.89819336E-002,1.47171021E-002,-2.25067139E-002,7.36694336E-002,-1.96228027E-002,-1.59301758E-002,3.00750732E-002,-4.96520996E-002,2.52838135E-002,-1.36871338E-002,2.82478333E-003,2.21405029E-002,1.72576904E-002,2.87322998E-002,-1.25789642E-003,-1.88598633E-002,-2.86407471E-002,-9.63687897E-004,1.30653381E-003,1.35040283E-002,-1.70612335E-003,-9.16290283E-003,-5.75637817E-003,1.12075806E-002,-2.36358643E-002,-1.36184692E-002,-1.74560547E-002,2.13470459E-002,-3.49235535E-003,2.00271606E-003,1.35421753E-002,-1.77154541E-002,-1.87988281E-002,5.55725098E-002,-2.41088867E-002,-6.05773926E-003,4.03137207E-002,6.94274902E-003,-1.04370117E-001,4.37316895E-002,2.784729E-002,3.42845917E-004,-5.4473877E-003,3.75061035E-002,4.52041626E-003,-1.53198242E-002,1.21231079E-002,2.85797119E-002,3.68499756E-003,-3.16772461E-002,4.21142578E-003,1.92871094E-002,2.09197998E-002,1.63574219E-002,-1.16195679E-002,1.27868652E-002,-1.39083862E-002,-2.55432129E-002,4.38537598E-002,5.01098633E-002,-6.20365143E-004,-5.41381836E-002,-4.52270508E-002,1.35421753E-002,2.46734619E-002,7.41195679E-003,-2.41088867E-002,-9.52148438E-003,-5.22994995E-003,1.45339966E-002,-2.02331543E-002,-1.30615234E-002,-6.95800781E-003,-1.91497803E-002,-1.59759521E-002,-5.38253784E-003,-8.17108154E-003,-3.15246582E-002,-2.4433136E-003,-7.97271729E-003,3.15551758E-002,2.9258728E-003,-8.6517334E-003,1.4175415E-002,-1.43966675E-002,1.91116333E-003,2.24609375E-002,-3.38134766E-002,-5.18493652E-002,1.71966553E-002,-1.46865845E-002,-4.22973633E-002,-3.57666016E-002,-1.69525146E-002,-8.24737549E-003,-1.34277344E-002,5.31768799E-003,2.98919678E-002,7.36083984E-002,4.34875488E-003,-6.92138672E-002,-9.01794434E-003,-7.61108398E-002,1.32827759E-002,8.59832764E-003,-9.96398926E-003,4.45556641E-003,-1.4175415E-002,1.55105591E-002,-2.25067139E-003,-1.69372559E-002,-4.03594971E-003,-2.59399414E-002,-1.27792358E-002,-5.95474243E-003,4.14733887E-002,4.77218628E-003,5.53894043E-002,-2.87017822E-002,-7.10678101E-003,1.93634033E-002,2.04162598E-002,-6.17218018E-003,1.00021362E-002,-2.17895508E-002,1.06201172E-002,-3.34777832E-002,-3.78417969E-003,1.60369873E-002,-8.62598419E-004,2.51312256E-002,-1.18560791E-002,2.75802612E-003,-1.74560547E-002,-6.34384155E-003,-1.26266479E-002,4.19998169E-003,9.36889648E-003,-4.80957031E-002,-1.51443481E-002,-1.6418457E-002,3.95812988E-002,-2.29644775E-003,3.3203125E-002,7.12280273E-002,-6.51931763E-003,-1.73492432E-002,-7.62176514E-003,-5.078125E-002,-3.61022949E-002,4.98046875E-002,-5.17883301E-002,2.98309326E-002,-4.65698242E-002,-3.68347168E-002,-1.86004639E-002,5.2520752E-002,-3.93981934E-002,-2.80151367E-002,-3.24058533E-003,-1.75628662E-002,-4.26330566E-002,1.98822021E-002,-1.24588013E-002,3.99169922E-002,1.59454346E-002,-1.28555298E-002,3.19519043E-002,-4.14609909E-004,-1.06811523E-003,-7.88879395E-003,2.55737305E-002,1.21841431E-002,-3.23791504E-002,-1.88446045E-002,4.8034668E-002,-3.43017578E-002,-1.21307373E-002,8.09936523E-002,-1.31225586E-002,5.40542603E-003,-4.87060547E-002,1.2260437E-002,1.82952881E-002,-4.0802002E-002,3.80516052E-003,-3.27301025E-003,3.14331055E-002,4.92858887E-002,-1.77154541E-002,2.37579346E-002,2.24304199E-002,-1.72424316E-002,2.05078125E-002,-2.1648407E-003,7.07244873E-003,3.41491699E-002,9.55963135E-003,1.92260742E-002,-7.17926025E-003,-8.86535645E-003,-4.27627563E-003,-1.30386353E-002,-1.70135498E-002,3.23791504E-002,-2.63061523E-002,2.54211426E-002,-4.02832031E-003,-1.66893005E-003,5.13305664E-002,-1.31607056E-002,-4.55627441E-002,-5.90209961E-002,4.56237793E-002,-6.14929199E-002,2.86407471E-002,8.32519531E-002,-5.72814941E-002,1.10244751E-002,5.04455566E-002,-1.83563232E-002,9.2124939E-004,1.2588501E-002,-3.69567871E-002,-2.53601074E-002,1.28479004E-002,2.62145996E-002,-3.97949219E-002,1.28555298E-002,-3.09906006E-002,3.15308571E-005,-6.47735596E-003,3.11279297E-002,3.44238281E-002,-5.81359863E-003,-3.00598145E-002,-1.41143799E-002,4.44946289E-002,6.53686523E-002,1.35345459E-002,2.88848877E-002,-1.27029419E-002,-1.09767914E-003,5.28259277E-002,-4.60205078E-002,1.63879395E-002,-9.95635986E-003,8.49914551E-003,-1.58882141E-003,1.84936523E-002,2.91137695E-002,4.8866272E-003,-4.6005249E-003,1.2802124E-002,-3.68690491E-003,6.54459E-005,-4.23278809E-002,1.18026733E-002,-2.75268555E-002,-2.97851562E-002,-2.39257812E-002,-6.20422363E-002,1.09558105E-002,-4.28009033E-003,-1.44882202E-002,9.10949707E-003,-2.19268799E-002,1.3053894E-002,1.74713135E-002,-4.76989746E-002,-1.74407959E-002,4.94766235E-003,-1.89361572E-002,1.99737549E-002,2.05230713E-002,4.43725586E-002,1.9317627E-002,4.47692871E-002,-8.85772705E-003,4.98962402E-003,-3.81469727E-002,-9.30786133E-003,-1.00402832E-002,-2.59094238E-002,1.93481445E-002,-5.41687012E-002,7.8086853E-003,-2.31170654E-003,-4.28161621E-002,3.03649902E-002,-1.41525269E-002,1.06735229E-002,-3.93676758E-002,-3.53050232E-003,3.56864929E-003,4.07714844E-002,4.55627441E-002,-1.05514526E-002,6.87789917E-003,3.0040741E-003,4.19998169E-003,-2.03399658E-002,2.42614746E-002,6.03795052E-005,1.09939575E-002,3.72009277E-002,-1.52740479E-002,-5.2986145E-003,-4.11376953E-002,6.4453125E-002,2.82592773E-002,-1.42974854E-002,-2.00805664E-002,2.52227783E-002,1.21154785E-002,5.59616089E-003,-1.2254715E-003,4.40368652E-002,1.16882324E-002,-1.94854736E-002,-2.32391357E-002,4.75158691E-002,-6.00585938E-002,-9.03320312E-002,-1.0546875E-001,-6.99462891E-002,-2.59857178E-002,-6.5246582E-002,-4.09545898E-002,-2.18009949E-003,-2.65350342E-002,1.63879395E-002,-2.42614746E-003,4.20761108E-003,2.57568359E-002,-4.13513184E-002,3.35083008E-002,-8.74633789E-002,-2.90489197E-003,-2.43377686E-002,7.82775879E-003,3.98864746E-002,4.4921875E-002,-8.36849213E-004,-9.16290283E-003,-4.66918945E-002,-1.93634033E-002,1.53579712E-002,2.5100708E-002,-4.2755127E-002,-1.23596191E-002,1.94549561E-002,-5.88989258E-002,-7.31201172E-002,-3.83605957E-002,-5.09033203E-002,3.41186523E-002,2.75421143E-002,8.09936523E-002,-2.56500244E-002,4.22668457E-002,-1.11312866E-002,2.30255127E-002,-1.87835693E-002,-3.01055908E-002,2.82440186E-002,2.24494934E-003,-4.35256958E-003,-1.2046814E-002,7.24487305E-002,2.08892822E-002,2.79388428E-002,-5.55419922E-002,-4.63256836E-002,-1.77612305E-002,2.5100708E-002,2.78015137E-002,1.30844116E-002,-2.72521973E-002,-2.46124268E-002,9.69696045E-003,1.02844238E-002,9.10186768E-003,3.87191772E-004,-3.31115723E-002,3.41186523E-002,-2.47764587E-003,-2.87017822E-002,3.40938568E-004,-4.46472168E-002,-6.67572021E-003,3.94058228E-003,2.07977295E-002,4.25415039E-002,1.4503479E-002,-7.9498291E-003,1.09863281E-003,2.41699219E-002,-4.72717285E-002,5.02929688E-002,-2.18353271E-002,-2.13012695E-002,-7.70874023E-002,4.2175293E-002,3.16772461E-002,1.56402588E-002,-1.12670898E-001,4.08630371E-002,-4.00695801E-002,7.55615234E-002,2.88009644E-003,6.34765625E-003,-1.45874023E-002,-1.64794922E-002,1.94854736E-002,-2.61230469E-002,2.77519226E-003,1.171875E-002,-2.76031494E-002,-2.3147583E-002,-1.73187256E-002,1.49765015E-002,-2.12249756E-002,5.2734375E-002,-5.1574707E-002,4.33731079E-003,9.88769531E-003,1.82342529E-002,5.04684448E-003,7.33566284E-003,2.24304199E-002,3.67736816E-002,6.14013672E-002,-2.53753662E-002,4.52041626E-003,5.05828857E-003,-3.75976562E-002,-4.66918945E-002,-6.63280487E-004,5.68008423E-003,4.11987305E-002,-2.65960693E-002,-2.40802765E-005,1.14364624E-002,3.21350098E-002,1.72424316E-002,-4.02832031E-002,7.07397461E-002,2.19268799E-002,-2.46582031E-002,1.51290894E-002,3.43513489E-003,-2.40478516E-002,2.36968994E-002,-6.90917969E-002,4.63256836E-002,-2.67028809E-002,-1.55258179E-002,-3.22570801E-002,6.35910034E-003,2.54821777E-002,-9.0637207E-003,1.56784058E-003,-3.20129395E-002,2.32849121E-002,8.46862793E-003,2.63671875E-002,2.25830078E-002,1.36375427E-003,-5.12084961E-002,8.5144043E-003,-1.39083862E-002,6.78539276E-004,-2.31323242E-002,-2.88009644E-003,1.49383545E-002,-9.39941406E-003,-3.73535156E-002,-6.5612793E-003,1.49383545E-002,2.27508545E-002,2.16064453E-002,-1.1510849E-003,-5.89370728E-004,-2.39562988E-002,-6.65664673E-003,2.22969055E-003,-1.14212036E-002,8.97979736E-003,2.44140625E-002,-3.64112854E-003,3.46755981E-003,5.43212891E-003,-1.6374588E-003,-1.21459961E-002,-2.69470215E-002,-1.20544434E-002,1.0383606E-002,-2.92205811E-002,-3.88183594E-002,-1.94244385E-002,-3.18908691E-002,-3.50952148E-002,-1.2008667E-002,3.39126587E-003,-7.81860352E-002,4.54711914E-002,-2.95448303E-003,1.30386353E-002,1.89819336E-002,4.83398438E-002,1.2550354E-002,8.69750977E-002,2.00271606E-003,-4.54101562E-002,3.05366516E-003,1.32446289E-002,6.22558594E-003,2.72979736E-002,1.94244385E-002,-4.17175293E-002,-2.97851562E-002,-4.40673828E-002,1.57775879E-002,-4.64782715E-002,2.26898193E-002,-1.10351562E-001,-1.56402588E-002,-4.57458496E-002,-4.67681885E-003,-2.80618668E-004,-1.14440918E-002,4.13513184E-002,5.96237183E-003,-2.70843506E-002,3.75976562E-002,-3.21350098E-002,2.66723633E-002,-1.62353516E-002,1.36871338E-002,1.57642365E-003,-1.22528076E-002,-3.52783203E-002,-7.97271729E-003,1.01547241E-002]\n",
-              "type" : "TABLE"
-            }
-          ],
-          "forms" : "[]"
-        },
+        "result" : null,
         "relations" : [ ],
-        "dynamicFormParams" : "{}"
+        "dynamicFormParams" : null
       },
       {
         "row" : 0,
@@ -760,22 +557,9 @@
         "hideInIFrame" : false,
         "enabled" : true,
         "forms" : "[]",
-        "result" : {
-          "startTime" : 1749760515806,
-          "endTime" : 1749760516201,
-          "interpreter" : "script.low",
-          "taskStatus" : "SUCCESS",
-          "status" : "SUCCESS",
-          "results" : [
-            {
-              "message" : "\nSOURCE                    \nroom_view.txt             \nwar_peace.txt             \nlittle_women.txt          \nsherlock_holmes.txt       \ngreat_expectations.txt    \ndracula.txt               \nmonte_christo.txt         \nmoby_dick.txt             \ngreen_gables.txt          \nwuthering_heights.txt     \ndorian_gray.txt           \nromeo_juliet.txt          \nfrankenstein.txt          \ngreat_gatsby.txt          \n\nSOURCE                    \npride_prejudice.txt       \nchristmas_carol.txt       \nimportance_earnest.txt    \nalice_wonderland.txt      \njeckyll_hyde.txt          \nsimple_sabotage.txt       \n\n20 rows selected. \n\n",
-              "type" : "TEXT"
-            }
-          ],
-          "forms" : "[]"
-        },
+        "result" : null,
         "relations" : [ ],
-        "dynamicFormParams" : "{}"
+        "dynamicFormParams" : null
       },
       {
         "row" : 0,
@@ -803,8 +587,8 @@
         "enabled" : true,
         "forms" : "[]",
         "result" : {
-          "startTime" : 1749760520879,
-          "endTime" : 1749760521308,
+          "startTime" : 1750130956948,
+          "endTime" : 1750130960175,
           "interpreter" : "script.low",
           "taskStatus" : "SUCCESS",
           "status" : "SUCCESS",
@@ -840,22 +624,9 @@
         "hideInIFrame" : false,
         "enabled" : true,
         "forms" : "[]",
-        "result" : {
-          "startTime" : 1744145268369,
-          "endTime" : 1744145272149,
-          "interpreter" : "script.low",
-          "taskStatus" : "SUCCESS",
-          "status" : "SUCCESS",
-          "results" : [
-            {
-              "message" : "RESPONSE                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              \nOracle Cloud Infrastructure (OCI) is a comprehensive cloud platform that provides a wide range of services, including computing, storage, networking, and database management, to support the deployment of enterprise-level applications and workloads. With OCI, users can build, deploy, and manage modern cloud-native applications, as well as migrate and run traditional enterprise workloads, all while taking advantage of Oracle's high-performance, secure, and scalable infrastructure.   \n\n\n\n---------------------------\n",
-              "type" : "TEXT"
-            }
-          ],
-          "forms" : "[]"
-        },
+        "result" : null,
         "relations" : [ ],
-        "dynamicFormParams" : "{}"
+        "dynamicFormParams" : null
       },
       {
         "row" : 0,
@@ -880,8 +651,8 @@
         "enabled" : true,
         "forms" : "[]",
         "result" : {
-          "startTime" : 1749760525700,
-          "endTime" : 1749760530644,
+          "startTime" : 1750130978784,
+          "endTime" : 1750130984131,
           "interpreter" : "script.low",
           "taskStatus" : "SUCCESS",
           "status" : "SUCCESS",
@@ -919,8 +690,8 @@
         "enabled" : true,
         "forms" : "[]",
         "result" : {
-          "startTime" : 1749760691114,
-          "endTime" : 1749760696159,
+          "startTime" : 1750130994622,
+          "endTime" : 1750131000265,
           "interpreter" : "script.low",
           "taskStatus" : "SUCCESS",
           "status" : "SUCCESS",
@@ -958,8 +729,8 @@
         "enabled" : true,
         "forms" : "[]",
         "result" : {
-          "startTime" : 1749760719292,
-          "endTime" : 1749760719851,
+          "startTime" : 1750131006820,
+          "endTime" : 1750131012060,
           "interpreter" : "script.low",
           "taskStatus" : "SUCCESS",
           "status" : "SUCCESS",
@@ -997,8 +768,8 @@
         "enabled" : true,
         "forms" : "[]",
         "result" : {
-          "startTime" : 1749760723131,
-          "endTime" : 1749760723477,
+          "startTime" : 1750131017877,
+          "endTime" : 1750131021803,
           "interpreter" : "script.low",
           "taskStatus" : "SUCCESS",
           "status" : "SUCCESS",
@@ -1021,8 +792,8 @@
         "title" : null,
         "hasTitle" : false,
         "message" : [
-          "%script",
-          "--view vector-similarity results",
+          "%sql",
+          "--inspect results of vector-similarity search",
           "SELECT AI RUNSQL",
           "\"What is the name of Ahab's ship?\";"
         ],
@@ -1036,15 +807,15 @@
         "enabled" : true,
         "forms" : "[]",
         "result" : {
-          "startTime" : 1749760727490,
-          "endTime" : 1749760727820,
-          "interpreter" : "script.low",
+          "startTime" : 1750131029904,
+          "endTime" : 1750131030580,
+          "interpreter" : "sql.low",
           "taskStatus" : "SUCCESS",
           "status" : "SUCCESS",
           "results" : [
             {
-              "message" : "\nDATA                                                                                SOURCE           URL                                                                                                                          SCORE    START_OFFSET    END_OFFSET    \nod!” cried the English Captain, to whom the question was put.  “What’s the matte    moby_dick.txt    https://objectstorage.us-chicago-1.oraclecloud.com/n/orasenatdpltintegration03/b/JoeHahnRagBucket/o/rag/doc/moby_dick.txt        0.59          974401        975424 \nto the surface again, far  off the other bow, but within a few yards of Ahab’s b    moby_dick.txt    https://objectstorage.us-chicago-1.oraclecloud.com/n/orasenatdpltintegration03/b/JoeHahnRagBucket/o/rag/doc/moby_dick.txt        0.59         1236481       1237504 \n Pequod would sweep almost  all the known Sperm Whale cruising grounds of the wo    moby_dick.txt    https://objectstorage.us-chicago-1.oraclecloud.com/n/orasenatdpltintegration03/b/JoeHahnRagBucket/o/rag/doc/moby_dick.txt        0.59          841921        842944 \name Ahab alone  from his cabin. Taking a few turns on the quarter-deck, he pause    moby_dick.txt    https://objectstorage.us-chicago-1.oraclecloud.com/n/orasenatdpltintegration03/b/JoeHahnRagBucket/o/rag/doc/moby_dick.txt        0.58          693121        694144 \nrustful of all aliens, unless they hailed from Cape Cod or the  Vineyard.    “Bu    moby_dick.txt    https://objectstorage.us-chicago-1.oraclecloud.com/n/orasenatdpltintegration03/b/JoeHahnRagBucket/o/rag/doc/moby_dick.txt        0.57          178561        179584 \n\n\n---------------------------\n",
-              "type" : "TEXT"
+              "message" : "DATA\tSOURCE\tURL\tSCORE\tSTART_OFFSET\tEND_OFFSET\nod!” cried the English Captain, to whom the question was put.  “What’s the matter? He was heading east, I think.—Is your Captain  crazy?” whispering Fedallah.    But Fedallah, putting a finger on his lip, slid over the bulwarks to  take the boat’s steering oar, and Ahab, swinging the cutting-tackle  towards him, commanded the ship’s sailors to stand by to lower.    In a moment he was standing in the boat’s stern, and the Manilla men  were springing to their oars. In vain the English Captain hailed him.  With back to the stranger ship, and face set like a flint to his own,  Ahab stood upright till alongside of the Pequod.      CHAPTER 101. The Decanter.    Ere the English ship fades from sight, be it set down here, that she  hailed from London, and was named after the late Samuel Enderby,  merchant of that city, the original of the famous whaling house of  Enderby & Sons; a house which in my poor whaleman’s opinion, comes not  far behind the united royal houses of the Tudors and Bourbons, in point  of real his\tmoby_dick.txt\thttps://objectstorage.us-chicago-1.oraclecloud.com/n/orasenatdpltintegration03/b/JoeHahnRagBucket/o/rag/doc/moby_dick.txt\t0.59\t974401\t975424\nto the surface again, far  off the other bow, but within a few yards of Ahab’s boat, where, for a  time, he lay quiescent.    “I turn my body from the sun. What ho, Tashtego! let me hear thy  hammer. Oh! ye three unsurrendered spires of mine; thou uncracked keel;  and only god-bullied hull; thou firm deck, and haughty helm, and  Pole-pointed prow,—death-glorious ship! must ye then perish, and  without me? Am I cut off from the last fond pride of meanest  shipwrecked captains? Oh, lonely death on lonely life! Oh, now I feel  my topmost greatness lies in my topmost grief. Ho, ho! from all your  furthest bounds, pour ye now in, ye bold billows of my whole foregone  life, and top this one piled comber of my death! Towards thee I roll,  thou all-destroying but unconquering whale; to the last I grapple with  thee; from hell’s heart I stab at thee; for hate’s sake I spit my last  breath at thee. Sink all coffins and all hearses to one common pool!  and since neither can be mine, let me then tow to pieces, while stil\tmoby_dick.txt\thttps://objectstorage.us-chicago-1.oraclecloud.com/n/orasenatdpltintegration03/b/JoeHahnRagBucket/o/rag/doc/moby_dick.txt\t0.59\t1236481\t1237504\n Pequod would sweep almost  all the known Sperm Whale cruising grounds of the world, previous to  descending upon the Line in the Pacific; where Ahab, though everywhere  else foiled in his pursuit, firmly counted upon giving battle to Moby  Dick, in the sea he was most known to frequent; and at a season when he  might most reasonably be presumed to be haunting it.    But how now? in this zoned quest, does Ahab touch no land? does his  crew drink air? Surely, he will stop for water. Nay. For a long time,  now, the circus-running sun has raced within his fiery ring, and needs  no sustenance but what’s in himself. So Ahab. Mark this, too, in the  whaler. While other hulls are loaded down with alien stuff, to be  transferred to foreign wharves; the world-wandering whale-ship carries  no cargo but herself and crew, their weapons and their wants. She has a  whole lake’s contents bottled in her ample hold. She is ballasted with  utilities; not altogether with unusable pig-lead and kentledge. She  carries years’ wate\tmoby_dick.txt\thttps://objectstorage.us-chicago-1.oraclecloud.com/n/orasenatdpltintegration03/b/JoeHahnRagBucket/o/rag/doc/moby_dick.txt\t0.59\t841921\t842944\name Ahab alone  from his cabin. Taking a few turns on the quarter-deck, he paused to  gaze over the side, then slowly getting into the main-chains he took  Stubb’s long spade—still remaining there after the whale’s  decapitation—and striking it into the lower part of the half-suspended  mass, placed its other end crutch-wise under one arm, and so stood  leaning over with eyes attentively fixed on this head.    It was a black and hooded head; and hanging there in the midst of so  intense a calm, it seemed the Sphynx’s in the desert. “Speak, thou vast  and venerable head,” muttered Ahab, “which, though ungarnished with a  beard, yet here and there lookest hoary with mosses; speak, mighty  head, and tell us the secret thing that is in thee. Of all divers, thou  hast dived the deepest. That head upon which the upper sun now gleams,  has moved amid this world’s foundations. Where unrecorded names and  navies rust, and untold hopes and anchors rot; where in her murderous  hold this frigate earth is ballasted with b\tmoby_dick.txt\thttps://objectstorage.us-chicago-1.oraclecloud.com/n/orasenatdpltintegration03/b/JoeHahnRagBucket/o/rag/doc/moby_dick.txt\t0.58\t693121\t694144\nrustful of all aliens, unless they hailed from Cape Cod or the  Vineyard.    “But what takes thee a-whaling? I want to know that before I think of  shipping ye.”    “Well, sir, I want to see what whaling is. I want to see the world.”    “Want to see what whaling is, eh? Have ye clapped eye on Captain Ahab?”    “Who is Captain Ahab, sir?”    “Aye, aye, I thought so. Captain Ahab is the Captain of this ship.”    “I am mistaken then. I thought I was speaking to the Captain himself.”    “Thou art speaking to Captain Peleg—that’s who ye are speaking to,  young man. It belongs to me and Captain Bildad to see the Pequod fitted  out for the voyage, and supplied with all her needs, including crew. We  are part owners and agents. But as I was going to say, if thou wantest  to know what whaling is, as thou tellest ye do, I can put ye in a way  of finding it out before ye bind yourself to it, past backing out. Clap  eye on Captain Ahab, young man, and thou wilt find that he has only one  leg.”    “What do you mean, sir? \tmoby_dick.txt\thttps://objectstorage.us-chicago-1.oraclecloud.com/n/orasenatdpltintegration03/b/JoeHahnRagBucket/o/rag/doc/moby_dick.txt\t0.57\t178561\t179584\n",
+              "type" : "TABLE"
             }
           ],
           "forms" : "[]"
@@ -1075,8 +846,8 @@
         "enabled" : true,
         "forms" : "[]",
         "result" : {
-          "startTime" : 1749760731806,
-          "endTime" : 1749760738749,
+          "startTime" : 1750131035533,
+          "endTime" : 1750131044673,
           "interpreter" : "script.low",
           "taskStatus" : "SUCCESS",
           "status" : "SUCCESS",
@@ -1100,7 +871,7 @@
         "hasTitle" : false,
         "message" : [
           "%script",
-          "-- use 'SELECT AI CHAT' to bypass RAG and ask LLM about Christmas Carol...not this response doesn't include Sources",
+          "-- use 'SELECT AI CHAT' to bypass RAG and ask LLM about Christmas Carol",
           "SELECT AI CHAT ",
           "\"what does Scrooge think about Christmas?\";"
         ],
@@ -1114,14 +885,14 @@
         "enabled" : true,
         "forms" : "[]",
         "result" : {
-          "startTime" : 1749760743124,
-          "endTime" : 1749760747755,
+          "startTime" : 1750131053747,
+          "endTime" : 1750131062403,
           "interpreter" : "script.low",
           "taskStatus" : "SUCCESS",
           "status" : "SUCCESS",
           "results" : [
             {
-              "message" : "\nRESPONSE                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     \nAccording to Charles Dickens' classic novel \"A Christmas Carol\", Ebenezer Scrooge thinks that Christmas is a \"humbug\". He believes it to be a waste of time and money, and that people only pretend to be merry and charitable during the holiday season in order to appear virtuous. Scrooge is a miserly and bitter old man who has no use for the joy, kindness, and generosity that Christmas represents. He would much rather be left alone to focus on his business and accumulate wealth, and sees no value in the festive spirit or the idea of giving to others.    \n\n\n---------------------------\n",
+              "message" : "\nRESPONSE                                                                                                                                                                                                                                                                                                                                                                      \nAccording to Charles Dickens' classic novel \"A Christmas Carol\", Ebenezer Scrooge thinks that Christmas is a waste of time and money. He views it as a time when people are foolishly generous and indulgent, and he believes that it's all just a excuse for people to be idle and frivolous.\n\nIn fact, when his nephew Fred invites him to Christmas dinner, Scrooge responds with his famous line: \"Bah! Humbug!\" This phrase has become synonymous with a grumpy or dismissive attitude towards Christmas.\n\nScrooge's negative views on Christmas are largely driven by his own bitter and miserly personality, as well as his painful past experiences. However, as the story unfolds, Scrooge is visited by the Ghosts of Christmas Past, Present, and Yet to Come, who help him to see the error of his ways and ultimately transform his outlook on Christmas and life in general.    \n\n\n---------------------------\n",
               "type" : "TEXT"
             }
           ],
