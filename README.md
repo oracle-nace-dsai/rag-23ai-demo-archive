@@ -17,14 +17,14 @@ and that you will need to modify those quantities if you wish rebuild this demo 
 
 1 launch ADW in your OCI tenancy
 
-2 ADW user ADMIN create user SAIRAG with necessary permissions
+2 ADW user ADMIN create user SELECT_AI_USER with necessary permissions
 
-    create user SAIRAG identified by "<password>";
-    grant dwrole to SAIRAG;
-    grant unlimited tablespace to SAIRAG;
-    grant execute on DBMS_CLOUD to SAIRAG;
-    grant execute on DBMS_CLOUD_AI to SAIRAG;
-    grant oml_developer to SAIRAG;
+    create user SELECT_AI_USER identified by "<password>";
+    grant dwrole to SELECT_AI_USER;
+    grant unlimited tablespace to SELECT_AI_USER;
+    grant execute on DBMS_CLOUD to SELECT_AI_USER;
+    grant execute on DBMS_CLOUD_AI to SELECT_AI_USER;
+    grant oml_developer to SELECT_AI_USER;
 
 per https://snicholspa.github.io/tips_tricks_howtos/autonomous_database/select_ai_rag/?nav=close
 
@@ -99,7 +99,7 @@ which will be pasted into the OML notebook and APEX app that are described below
     book=sherlock_holmes.txt ; bs_file=data/books/$book ; os_file=rag/doc/$book ; oci os object put --bucket-name $bucket_name --file $bs_file --name $os_file -ns $ns --force
     book=wuthering_heights.txt ; bs_file=data/books/$book ; os_file=rag/doc/$book ; oci os object put --bucket-name $bucket_name --file $bs_file --name $os_file -ns $ns --force
 
-10 user SAIRAG import OML notebook RAG_books_archive.dsnb
+10 user SELECT_AI_USER import OML notebook RAG_books_archive.dsnb
 
 11 use cloudshell to display private key
 
@@ -119,7 +119,7 @@ and paste that into the RAG_CREDENTIAL paragraph of OML notebook RAG_books_archi
 
 18 import APEX application f100.sql into APEX
 
-19 user SAIRAG opens apex app...does user need to create a workspace? use the SAIRAG workspace?
+19 user SELECT_AI_USER opens apex app...does user need to create a workspace? use the SELECT_AI_USER workspace?
 
 20 revise the APEX app so that it is aware of your bucket namespace, bucket name, user and tenancy ocids, the private key mentioned above, and the ObjStore paths, via the following steps:
 
