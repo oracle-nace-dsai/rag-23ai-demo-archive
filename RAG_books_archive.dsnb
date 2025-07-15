@@ -1,0 +1,817 @@
+[
+  {
+    "name" : "RAG_books_archive",
+    "description" : null,
+    "tags" : null,
+    "version" : "7",
+    "layout" : "zeppelin",
+    "type" : "low",
+    "snapshot" : false,
+    "isEditable" : true,
+    "isRunnable" : true,
+    "template" : "dsrgmn3y",
+    "templateConfig" : "{\"visualization\":{\"filters\":[{\"_id\":1583324064459,\"type\":\"styling\",\"enabled\":true,\"conditions\":{\"operator\":\"and\",\"conditions\":[{\"property\":\"hiddenConnection\",\"operator\":\"*\",\"value\":\"\"}]},\"component\":\"edge\",\"target\":\"edge\",\"properties\":{\"colors\":[\"rgba(0, 0, 0, 0.1)\"],\"style\":[\"dashed\"],\"legendTitle\":[\"Hidden Connection\"]}},{\"_id\":1590499315755,\"type\":\"aggregation\",\"enabled\":true,\"conditions\":{\"operator\":\"and\",\"conditions\":[]},\"component\":\"vertex\",\"target\":\"vertex\",\"properties\":{},\"aggregation\":[{\"source\":\"\",\"type\":\"average\"}]}],\"version\":4}}",
+    "paragraphs" : [
+      {
+        "row" : 0,
+        "col" : 0,
+        "sizeX" : 0,
+        "width" : 12,
+        "title" : null,
+        "hasTitle" : false,
+        "message" : [
+          "%script",
+          "-- this is adapted from https://snicholspa.github.io/tips_tricks_howtos/autonomous_database/select_ai_rag/?nav=c$s"
+        ],
+        "selectedVisualization" : "html",
+        "visualizationConfig" : null,
+        "hideCode" : false,
+        "hideResult" : false,
+        "hideGutter" : true,
+        "hideVizConfig" : false,
+        "hideInIFrame" : false,
+        "enabled" : true,
+        "forms" : "[]",
+        "result" : {
+          "startTime" : 1752607462814,
+          "endTime" : 1752607464742,
+          "interpreter" : "script.low",
+          "taskStatus" : "SUCCESS",
+          "status" : "SUCCESS",
+          "results" : [ ],
+          "forms" : "[]"
+        },
+        "relations" : [ ],
+        "dynamicFormParams" : "{}"
+      },
+      {
+        "row" : 0,
+        "col" : 0,
+        "sizeX" : 0,
+        "width" : 12,
+        "title" : null,
+        "hasTitle" : false,
+        "message" : [
+          "%script",
+          "-- create credential that ADW uses to talk to ObjStore and GenAI services",
+          "-- pem key pair and fingerprint are created in cloud shell and stored in ~/.oci",
+          "-- this will require OCI developer account, OCIDS, and that OCI developer will need access to APEX developer account",
+          "-- admin user must grant execute on DBMS_CLOUD to <db-developer>; grant execute on DBMS_CLOUD_AI to <db-developer>;",
+          "BEGIN DBMS_CLOUD.DROP_CREDENTIAL('RAG_CREDENTIAL'); EXCEPTION WHEN OTHERS THEN NULL; END;",
+          "/",
+          "BEGIN",
+          "   DBMS_CLOUD.CREATE_CREDENTIAL (",
+          "       credential_name => 'RAG_CREDENTIAL',",
+          "       user_ocid       => 'ocid1.user.oc1..aaaaaaaafolzomxi6tqsoy6wdnlXXXXXXXXXXXXXXXXXXXX4sm722iwxaakgqqq',",
+          "       tenancy_ocid    => 'ocid1.tenancy.oc1..aaaaaaaaiyavtwbz4kyu7XXXXXXXXXXXXXXXXXXXXX5nwpbme44mv54xu7dq',",
+          "       private_key     => '",
+          "-----BEGIN PRIVATE KEY-----",
+          "MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC+MTO390CJxKYp",
+          "chIm/TVkm5R4dKWLaW0bG+HuwYbIP2QgN2ZU6yRGgtzJA/vY8SiZVkbxfMqSKq61",
+          "gqw3VJsUEQDgVbjU+e+EBKpYsrNVQpHg5X/we6hvCCOii44vtNXSzyvQ2FQRJGZ+",
+          "XBV8GQZOei90AZ9Z07TlwVSSv0EIuQqa7oK/tagsVbq15/gO03hSCfl4SYMMpPat",
+          "ucTKUqO7cRJOz3zCWVGRv4gWyussTlvxePaj337/C5WlstTjE/5eaSIM4EquB62U",
+          "By0s1c5HIkjGoymjIr0sqCCfkEbGlycllkqAtauEdjgkn3AsF8yYW7jSLbotycxm",
+          "U3AIjJgNAgMBAAECggEAL26VW6Cj3Yfnuafba5JT9ciQLT9IBt3uyic4wCLPApM+",
+          "...",
+          "KfAKV0Lhc1vcFhfk3StWITkhzuVBqZuS4mLQdob0jVzbfpd+aWUzidSjdt8mRluX",
+          "J7FS6+pUd+8w6r8qKmXttBVc+gJ8odzS6QG3C6SGO9SEF83p8nf77JYg4QKBgB34",
+          "BglUtb2ttiNKLG+EZtQAIieNtL4fjX1QYK+WLC042ckQcereRIEGTeA9MzgTP+z0",
+          "uNRGfrCO5CaqI01rzfnCMRYdjVB7ZVVMWsCAqWY9EJzRy10l6lvtIJZVr2GQ2e1z",
+          "0hRy4iV76W0q6xxpCdZR91NEQATacoYqhwI+6GXBAoGAJfVxgL5G2klFaln4wTgj",
+          "+q6+fLO2FX8mvATrCqsAX3sKoetszIxXyA3m5zh+si3WDnot6RUqWxj7VTaioftE",
+          "hmN38XwIGlrg0pMV94MLthu4NW4N0XTr1Q68fHg1srNSIJoGArxmKCoG/Jo9K7fe",
+          "nacDO75lNqxEmKrqqi6WPdg=",
+          "-----END PRIVATE KEY-----",
+          "       ',",
+          "       fingerprint     => '91:e4:ca:df:a3:e5XXXXXXXXX4:02:44:d8:4a:69:ec'",
+          ");",
+          "END;",
+          "/",
+          "select * from user_credentials;"
+        ],
+        "selectedVisualization" : "raw",
+        "visualizationConfig" : null,
+        "hideCode" : false,
+        "hideResult" : false,
+        "hideGutter" : true,
+        "hideVizConfig" : false,
+        "hideInIFrame" : false,
+        "enabled" : true,
+        "forms" : "[]",
+        "result" : {
+          "startTime" : 1752607668422,
+          "endTime" : 1752607668845,
+          "interpreter" : "script.low",
+          "taskStatus" : "SUCCESS",
+          "status" : "SUCCESS",
+          "results" : [
+            {
+              "message" : "\nPL/SQL procedure successfully completed.\n\n\n---------------------------\n\nPL/SQL procedure successfully completed.\n\n\n---------------------------\n\nCREDENTIAL_NAME      USERNAME                                                                           WINDOWS_DOMAIN    COMMENTS                                                                     ENABLED    \nRAG_CREDENTIAL       ocid1.user.oc1..aaaaaaaafolzomxi6tqsoy6wdnlXXXXXXXXXXXXXXXXXXXX4sm722iwxaakgqqq                      {\"comments\":\"Created native credential via DBMS_CLOUD.create_credential\"}    TRUE       \nENCODE_CREDENTIAL    ocid1.user.oc1..aaaaaaaafolzomxiXXXXXXXXXX64ooljhtvfgy4sm722iwxaakgqqq                         {\"comments\":\"Created native credential via DBMS_CLOUD.create_credential\"}    TRUE       \nAI_CREDENTIAL        ocid1.user.oc1..aaaaaaaafolzomxi6tqsoy6wdnlwjXXXXXXXXXXXXXwxaakgqqq                         {\"comments\":\"Created native credential via DBMS_CLOUD.create_credential\"}    TRUE       \n\n\n---------------------------\n",
+              "type" : "TEXT"
+            }
+          ],
+          "forms" : "[]"
+        },
+        "relations" : [ ],
+        "dynamicFormParams" : "{}"
+      },
+      {
+        "row" : 0,
+        "col" : 0,
+        "sizeX" : 0,
+        "width" : 0,
+        "title" : null,
+        "hasTitle" : false,
+        "message" : [
+          "%script",
+          "--test connectivity to Object Storage",
+          "SELECT * FROM DBMS_CLOUD.LIST_OBJECTS(",
+          "    'RAG_CREDENTIAL',",
+          "    'https://objectstorage.us-chicago-1.oraclecloud.com/n/orasenatdpltintegration03/b/RagBucket/o/rag/doc/');"
+        ],
+        "selectedVisualization" : "raw",
+        "visualizationConfig" : null,
+        "hideCode" : false,
+        "hideResult" : false,
+        "hideGutter" : true,
+        "hideVizConfig" : false,
+        "hideInIFrame" : false,
+        "enabled" : true,
+        "forms" : "[]",
+        "result" : {
+          "startTime" : 1752607889237,
+          "endTime" : 1752607889615,
+          "interpreter" : "script.low",
+          "taskStatus" : "ERROR",
+          "status" : "ERROR",
+          "results" : [
+            {
+              "message" : "\nError starting at line : 2 in command -\nSELECT * FROM DBMS_CLOUD.LIST_OBJECTS(\n    'RAG_CREDENTIAL',\n    'https://objectstorage.us-chicago-1.oraclecloud.com/n/orasenatdpltintegration03/b/RagBucket/o/rag/doc/')\nError at Command Line : 2 Column : 15\nError report -\nSQL Error: ORA-20404: Object not found -\nhttps://objectstorage.us-chicago-1.oraclecloud.com/n/orasenatdpltintegration03/b\n/RagBucket/o/rag/doc/\nORA-06512: at \"C##CLOUD$SERVICE.DBMS_CLOUD\", line 2233\nORA-06512: at \"C##CLOUD$SERVICE.DBMS_CLOUD\", line 13910\nORA-06512: at line 1\n\nhttps://docs.oracle.com/error-help/db/ora-20404/\n\nMore Details :\nhttps://docs.oracle.com/error-help/db/ora-20404/\nhttps://docs.oracle.com/error-help/db/ora-06512/\n\n---------------------------\n",
+              "type" : "TEXT"
+            }
+          ],
+          "forms" : "[]"
+        },
+        "relations" : [ ],
+        "dynamicFormParams" : "{}"
+      },
+      {
+        "row" : 0,
+        "col" : 0,
+        "sizeX" : 0,
+        "width" : 12,
+        "title" : null,
+        "hasTitle" : false,
+        "message" : [
+          "%script",
+          "-- create Select AI profile for rag",
+          "-- note that by NOT specifying \"model\" you use default LLM which is Llama3.3 today",
+          "BEGIN DBMS_CLOUD_AI.drop_profile('RAG_PROFILE', force => true); EXCEPTION WHEN OTHERS THEN NULL; END;",
+          "/",
+          "BEGIN",
+          "    DBMS_CLOUD_AI.CREATE_PROFILE(",
+          "        profile_name => 'RAG_PROFILE',",
+          "        attributes =>",
+          "            '{\"provider\": \"oci\",",
+          "            \"credential_name\": \"RAG_CREDENTIAL\",",
+          "            \"region\":\"us-chicago-1\",",
+          "            \"oci_compartment_id\":\"ocid1.tenancy.oc1..aaaaaaaaiyavtwbz4kyu7XXXXXXXXXXcbflmjx2lzk5nwpbme44mv54xu7dq\",",
+          "            \"vector_index_name\": \"RAG_INDEX\",",
+          "            \"embedding_model\": \"cohere.embed-english-v3.0\"",
+          "            }'",
+          "    );",
+          "END;",
+          "/",
+          "select * from user_CLOUD_AI_PROFILES;"
+        ],
+        "selectedVisualization" : "raw",
+        "visualizationConfig" : null,
+        "hideCode" : false,
+        "hideResult" : false,
+        "hideGutter" : true,
+        "hideVizConfig" : false,
+        "hideInIFrame" : false,
+        "enabled" : true,
+        "forms" : "[]",
+        "result" : {
+          "startTime" : 1752607750926,
+          "endTime" : 1752607755263,
+          "interpreter" : "script.low",
+          "taskStatus" : "SUCCESS",
+          "status" : "SUCCESS",
+          "results" : [
+            {
+              "message" : "\nPL/SQL procedure successfully completed.\n\n\n---------------------------\n\nPL/SQL procedure successfully completed.\n\n\n---------------------------\n\nPROFILE_ID    PROFILE_NAME              STATUS     DESCRIPTION    CREATED                                LAST_MODIFIED                          ORACLE_MAINTAINED    \n          238 RAG_PROFILE               ENABLED                   15-JUL-25 07.29.12.386510000 PM UTC    15-JUL-25 07.29.12.386510000 PM UTC    N                    \n          193 OCI_CRED$PROF             ENABLED                   14-APR-25 06.29.19.505837000 PM UTC    14-APR-25 06.29.19.505837000 PM UTC    N                    \n          226 ENCODE_CREDENTIAL$PROF    ENABLED                   22-MAY-25 09.34.30.600760000 PM UTC    22-MAY-25 09.34.30.600760000 PM UTC    N                    \n\n\n---------------------------\n",
+              "type" : "TEXT"
+            }
+          ],
+          "forms" : "[]"
+        },
+        "relations" : [ ],
+        "dynamicFormParams" : "{}"
+      },
+      {
+        "row" : 0,
+        "col" : 0,
+        "sizeX" : 0,
+        "width" : 12,
+        "title" : null,
+        "hasTitle" : false,
+        "message" : [
+          "%script",
+          "-- create vector index ie chunk & vectorize files stored in ObjStore",
+          "-- can set vector_distance_metric=cosine, euclidean. cosine results in better similarity searches, am unsure why",
+          "BEGIN DBMS_CLOUD_AI.drop_vector_index('RAG_INDEX'); EXCEPTION WHEN OTHERS THEN NULL; END;",
+          "/",
+          "begin",
+          "    DBMS_CLOUD_AI.create_vector_index(",
+          "         index_name  => 'RAG_INDEX',",
+          "         attributes  => '{\"vector_db_provider\": \"oracle\",",
+          "                          \"vector_table_name\": \"RAG_VECTORS\",",
+          "                          \"object_storage_credential_name\": \"RAG_CREDENTIAL\",",
+          "                          \"location\": \"https://objectstorage.us-chicago-1.oraclecloud.com/n/orasenatdpltintegration03/b/RagBucket/o/rag/doc/\",",
+          "                          \"profile_name\": \"RAG_PROFILE\",",
+          "                          \"vector_dimension\": 1024,",
+          "                          \"vector_distance_metric\": \"cosine\",",
+          "                          \"chunk_overlap\": 64,",
+          "                          \"chunk_size\": 1024,",
+          "                          \"refresh_rate\": 1440",
+          "      }');",
+          "end;",
+          "/"
+        ],
+        "selectedVisualization" : "raw",
+        "visualizationConfig" : null,
+        "hideCode" : false,
+        "hideResult" : false,
+        "hideGutter" : true,
+        "hideVizConfig" : false,
+        "hideInIFrame" : false,
+        "enabled" : true,
+        "forms" : "[]",
+        "result" : {
+          "startTime" : 1752521491413,
+          "endTime" : 1752521495153,
+          "interpreter" : "script.low",
+          "taskStatus" : "SUCCESS",
+          "status" : "SUCCESS",
+          "results" : [
+            {
+              "message" : "\nPL/SQL procedure successfully completed.\n\n\n---------------------------\n\nPL/SQL procedure successfully completed.\n\n\n---------------------------\n",
+              "type" : "TEXT"
+            }
+          ],
+          "forms" : "[]"
+        },
+        "relations" : [ ],
+        "dynamicFormParams" : "{}"
+      },
+      {
+        "row" : 0,
+        "col" : 0,
+        "sizeX" : 0,
+        "width" : 0,
+        "title" : null,
+        "hasTitle" : false,
+        "message" : [
+          "%script",
+          "-- vectorization is complete when counts of RAG_VECTORS plateaus, 16074 records in about 1 minute",
+          "select count(*) from RAG_VECTORS;"
+        ],
+        "selectedVisualization" : "raw",
+        "visualizationConfig" : null,
+        "hideCode" : false,
+        "hideResult" : false,
+        "hideGutter" : true,
+        "hideVizConfig" : false,
+        "hideInIFrame" : false,
+        "enabled" : true,
+        "forms" : "[]",
+        "result" : {
+          "startTime" : 1752607769396,
+          "endTime" : 1752607769784,
+          "interpreter" : "script.low",
+          "taskStatus" : "SUCCESS",
+          "status" : "SUCCESS",
+          "results" : [
+            {
+              "message" : "\nCOUNT(*)    \n      16074 \n\n\n---------------------------\n",
+              "type" : "TEXT"
+            }
+          ],
+          "forms" : "[]"
+        },
+        "relations" : [ ],
+        "dynamicFormParams" : "{}"
+      },
+      {
+        "row" : 0,
+        "col" : 0,
+        "sizeX" : 0,
+        "width" : 12,
+        "title" : null,
+        "hasTitle" : false,
+        "message" : [
+          "%script",
+          "--check pipeline history for any vectorization errors",
+          "select * from user_cloud_pipeline_history where (PIPELINE_NAME = 'RAG_INDEX$VECPIPELINE') order by END_DATE;"
+        ],
+        "selectedVisualization" : "raw",
+        "visualizationConfig" : null,
+        "hideCode" : false,
+        "hideResult" : false,
+        "hideGutter" : true,
+        "hideVizConfig" : false,
+        "hideInIFrame" : false,
+        "enabled" : true,
+        "forms" : "[]",
+        "result" : {
+          "startTime" : 1752521654195,
+          "endTime" : 1752521654755,
+          "interpreter" : "script.low",
+          "taskStatus" : "SUCCESS",
+          "status" : "SUCCESS",
+          "results" : [
+            {
+              "message" : "\nPIPELINE_ID    PIPELINE_NAME            PIPELINE_TYPE    JOB_ID     JOB_NAME        STATUS       START_DATE                             END_DATE                               INSTANCE_ID    SESSION_ID     ERROR_NUMBER    ERROR_MESSAGE    CPU_USED               JOB_OUTPUT    \n           425 RAG_INDEX$VECPIPELINE    VECTOR_INDEX        1272278 PIPELINE$425    SUCCEEDED    14-JUL-25 07.31.40.346717000 PM UTC    14-JUL-25 07.32.51.346717000 PM UTC                 3 46135,60052                  0                  +00 00:00:01.490000                  \n\n\n---------------------------\n",
+              "type" : "TEXT"
+            }
+          ],
+          "forms" : "[]"
+        },
+        "relations" : [ ],
+        "dynamicFormParams" : "{}"
+      },
+      {
+        "row" : 0,
+        "col" : 0,
+        "sizeX" : 0,
+        "width" : 12,
+        "title" : null,
+        "hasTitle" : false,
+        "message" : [
+          "%sql",
+          "-- text chunks and their vectors are stored in table RAG_VECTORS",
+          "select * from RAG_VECTORS offset 100 rows fetch next 1 rows only;"
+        ],
+        "selectedVisualization" : "raw",
+        "visualizationConfig" : null,
+        "hideCode" : false,
+        "hideResult" : false,
+        "hideGutter" : true,
+        "hideVizConfig" : false,
+        "hideInIFrame" : false,
+        "enabled" : true,
+        "forms" : "[]",
+        "result" : {
+          "startTime" : 1752521660501,
+          "endTime" : 1752521661011,
+          "interpreter" : "sql.low",
+          "taskStatus" : "SUCCESS",
+          "status" : "SUCCESS",
+          "results" : [
+            {
+              "message" : "CONTENT\tATTRIBUTES\tEMBEDDING\n migratory sheep who  seemed worthy, and give them a few hours in the pastures of the  permanent. Tea at a Renaissance villa? Nothing had been said about it  yet. But if it did come to that—how Lucy would enjoy it!    A few days ago and Lucy would have felt the same. But the joys of life  were grouping themselves anew. A drive in the hills with Mr. Eager and  Miss Bartlett—even if culminating in a residential tea-party—was no  longer the greatest of them. She echoed the raptures of Charlotte  somewhat faintly. Only when she heard that Mr. Beebe was also coming  did her thanks become more sincere.    “So we shall be a _partie carrée_,” said the chaplain. “In these days  of toil and tumult one has great needs of the country and its message  of purity. Andate via! andate presto, presto! Ah, the town! Beautiful  as it is, it is the town.”    They assented.    “This very square—so I am told—witnessed yesterday the most sordid of  tragedies. To one who loves the Florence of Dante and Savonarola there  is something \t{\"object_name\":\"room_view.txt\",\"object_size\":415860,\"last_modified\":\"2025-07-02T17:43:32+00:00\",\"location_uri\":\"https://objectstorage.us-chicago-1.oraclecloud.com/n/orasenatdpltintegration03/b/RagBucket/o/rag/doc/\",\"start_offset\":92161,\"end_offset\":93184}\t[4.85420227E-004,-4.01687622E-003,1.8951416E-002,1.64642334E-002,-5.41687012E-003,1.77001953E-002,3.21044922E-002,-3.56674194E-003,1.28936768E-002,3.93066406E-002,-4.64782715E-002,-8.7890625E-003,5.09643555E-002,-4.64248657E-003,5.60379028E-003,-2.13623047E-002,-1.52435303E-002,4.12597656E-002,2.70080566E-002,-2.85491943E-002,1.26800537E-002,-2.79693604E-002,-9.88006592E-003,-1.63574219E-002,5.82580566E-002,4.22668457E-002,-2.43835449E-002,7.49969482E-003,4.1809082E-002,3.34777832E-002,3.92456055E-002,-6.71386719E-002,2.65350342E-002,5.04150391E-002,-5.79528809E-002,-1.40609741E-002,-3.67126465E-002,2.20947266E-002,-1.86309814E-002,2.34680176E-002,2.89001465E-002,-5.11169434E-004,-9.16748047E-002,1.12915039E-002,-8.13598633E-002,-7.06100464E-003,-1.12533569E-002,2.98156738E-002,3.53393555E-002,-4.63256836E-002,1.3710022E-002,-1.40762329E-002,2.21099854E-002,-2.53143311E-002,-5.01708984E-002,-9.07897949E-003,1.52740479E-002,1.28746033E-003,2.96020508E-002,-5.61523438E-002,-4.86755371E-002,-1.42822266E-002,4.12597656E-002,2.79388428E-002,-1.171875E-002,-2.49786377E-002,2.79998779E-002,2.47497559E-002,3.52478027E-002,-1.46636963E-002,-7.76672363E-003,4.4128418E-002,1.71051025E-002,-4.73022461E-002,-2.5806427E-003,6.15844727E-002,-1.86309814E-002,3.36608887E-002,1.53884888E-002,-2.53143311E-002,1.71356201E-002,-1.89666748E-002,-3.78608704E-003,-5.20629883E-002,3.125E-002,-2.35443115E-002,1.12838745E-002,-1.82800293E-002,2.0401001E-002,1.84326172E-002,-6.4201355E-003,-5.53894043E-002,2.61688232E-002,4.59899902E-002,2.37121582E-002,-3.53088379E-002,2.81982422E-002,-1.28250122E-002,2.18200684E-002,-4.26940918E-002,6.52313232E-004,-2.60467529E-002,-4.84008789E-002,1.31149292E-002,-2.00042725E-002,1.24664307E-002,-2.02178955E-002,2.70996094E-002,1.85699463E-002,3.63769531E-002,-1.04751587E-002,-1.29547119E-002,3.58276367E-002,-4.9407959E-002,3.05480957E-002,-1.26876831E-002,-5.77449799E-004,7.69042969E-002,2.46734619E-002,-1.3633728E-002,-2.59971619E-003,2.83813477E-002,-5.23071289E-002,3.97949219E-002,-1.69372559E-002,-2.93426514E-002,1.65271759E-003,2.34832764E-002,7.95898438E-002,-2.02178955E-002,2.23236084E-002,3.2409668E-002,-7.50732422E-002,-4.93164062E-002,-5.078125E-002,2.29492188E-002,-1.7364502E-002,1.5838623E-002,-9.78088379E-003,-2.23846436E-002,5.77697754E-002,-1.66168213E-002,-1.52511597E-002,1.80969238E-002,2.31018066E-002,1.35269165E-002,2.89916992E-002,2.36749649E-004,-1.94091797E-002,2.94036865E-002,-2.96478271E-002,2.40478516E-002,1.54724121E-002,-1.20925903E-002,-5.00488281E-002,-3.95536423E-004,-5.52368164E-002,1.91192627E-002,-2.9800415E-002,1.13067627E-002,5.46264648E-002,-1.47247314E-002,-1.92108154E-002,2.30865479E-002,-2.05688477E-002,-3.46565247E-003,-3.14025879E-002,7.23648071E-003,2.91900635E-002,5.75256348E-002,2.23350525E-003,-3.61022949E-002,1.98364258E-002,3.32336426E-002,-1.67236328E-002,2.24761963E-002,-4.34265137E-002,-2.92205811E-002,-3.04985046E-003,6.09741211E-002,3.61022949E-002,-3.31726074E-002,-4.7668457E-002,6.26831055E-002,-2.07672119E-002,6.64672852E-002,-2.02941895E-002,1.41983032E-002,5.56564331E-003,-1.56173706E-002,-2.24456787E-002,3.125E-002,-3.80249023E-002,-4.94480133E-004,-1.96685791E-002,4.53186035E-003,5.29098511E-003,1.76544189E-002,-1.62811279E-002,8.76617432E-003,-6.23703003E-003,9.17053223E-003,-9.07897949E-003,-1.06735229E-002,-4.37011719E-002,-2.42996216E-003,-1.89056396E-002,3.80554199E-002,1.12762451E-002,3.66592407E-003,-1.87988281E-002,-2.61230469E-002,1.19857788E-002,-4.22973633E-002,-2.79083252E-002,1.78375244E-002,-2.7961731E-003,2.75993347E-003,4.47463989E-003,8.61358643E-003,6.04629517E-003,3.18908691E-002,-6.09588623E-003,-6.98471069E-003,-3.92150879E-002,3.42712402E-002,-2.00500488E-002,3.55529785E-002,-1.9241333E-002,4.31518555E-002,1.08032227E-002,-4.69970703E-002,3.79180908E-003,2.33154297E-002,-2.63214111E-002,2.63404846E-003,-2.01568604E-002,1.24816895E-002,-1.21231079E-002,6.87789917E-003,3.97644043E-002,4.69055176E-002,-4.38690186E-003,-1.88903809E-002,4.73022461E-002,-3.42102051E-002,2.60314941E-002,-2.43988037E-002,5.64575195E-004,2.90527344E-002,-1.03607178E-002,1.36566162E-002,2.77099609E-002,-1.28326416E-002,2.63977051E-003,2.92510986E-002,-3.47900391E-003,1.39083862E-002,-6.7024231E-003,1.96838379E-003,1.30233765E-002,4.71191406E-002,-2.34127045E-004,-7.99560547E-003,-6.85424805E-002,1.09634399E-002,-5.76400757E-003,2.3147583E-002,-4.02526855E-002,-2.38952637E-002,4.93164062E-002,1.32080078E-001,-2.84576416E-003,1.00158691E-001,5.56182861E-003,-2.41699219E-002,-3.4362793E-002,-1.87988281E-002,-3.42178345E-003,4.04968262E-002,-2.11029053E-002,1.08413696E-002,-3.01742554E-003,-1.85394287E-002,-1.57012939E-002,-5.13839722E-003,9.6282959E-003,-2.0980835E-002,-4.15344238E-002,-1.91650391E-002,2.0980835E-002,4.37011719E-002,-1.86562538E-004,2.06947327E-003,-4.19998169E-003,6.58416748E-003,8.27026367E-002,5.31616211E-002,-1.96228027E-002,8.16345215E-003,1.18408203E-002,1.71203613E-002,-3.08227539E-002,-4.89807129E-003,-9.93347168E-003,5.50842285E-002,2.76641846E-002,-1.36260986E-002,-1.12609863E-002,-7.51953125E-002,7.38525391E-002,-4.01000977E-002,3.1829834E-002,8.67919922E-002,-3.30200195E-002,-1.60675049E-002,-7.45391846E-003,7.45239258E-002,7.41577148E-002,6.9152832E-002,5.31005859E-003,7.01522827E-003,-1.09741211E-001,-2.20184326E-002,-2.5604248E-002,6.05163574E-002,-5.07202148E-002,-3.19213867E-002,-6.67190552E-003,-2.05841064E-002,2.24609375E-002,-1.76391602E-002,-1.33590698E-002,2.38800049E-002,1.96533203E-002,2.77900696E-003,-8.97884369E-004,-3.95202637E-002,-2.53295898E-002,6.30187988E-003,1.53045654E-002,-1.28326416E-002,1.00021362E-002,-1.15356445E-002,2.4520874E-002,-2.79541016E-002,8.16345215E-003,5.75256348E-003,5.46875E-002,3.19213867E-002,-3.24707031E-002,-8.46099854E-003,3.1414032E-003,6.57348633E-002,3.97033691E-002,-3.91845703E-002,-2.46276855E-002,6.98852539E-002,7.61032104E-003,-3.70788574E-003,-6.53686523E-002,1.17015839E-003,-5.85632324E-002,-2.32391357E-002,3.72924805E-002,-7.08389282E-003,-4.85839844E-002,1.98974609E-002,-2.72979736E-002,1.81732178E-002,4.71801758E-002,-3.70178223E-002,8.02612305E-003,-4.02526855E-002,-5.18493652E-002,-3.69262695E-002,3.10211182E-002,-1.27029419E-003,-3.87573242E-002,6.19506836E-003,-8.59069824E-003,-3.1463623E-002,1.21002197E-002,-4.01916504E-002,4.78515625E-002,2.83966064E-002,1.43127441E-002,2.12860107E-003,5.81054688E-002,1.58233643E-002,9.6206665E-003,-2.9586792E-002,-5.59806824E-004,-7.48825073E-003,3.27148438E-002,-1.3961792E-002,1.39007568E-002,1.6998291E-002,-5.44128418E-002,-3.00598145E-002,3.49121094E-002,-1.76429749E-003,1.62601471E-003,-6.29043579E-003,-2.20031738E-002,1.12915039E-002,3.82080078E-002,-6.14929199E-003,2.10723877E-002,-4.6295166E-002,-4.30603027E-002,4.76074219E-002,-7.38525391E-002,2.54058838E-002,-3.74145508E-002,-1.95465088E-002,9.16290283E-003,7.69805908E-003,5.56564331E-003,-3.01742554E-003,6.08444214E-004,1.62200928E-002,-1.85241699E-002,1.66473389E-002,-1.00631714E-002,1.86920166E-002,-2.41699219E-002,2.52990723E-002,-2.07672119E-002,1.257658E-005,-1.16062164E-003,-2.28424072E-002,-1.72576904E-002,-3.59191895E-002,-4.15039062E-002,-4.89425659E-003,1.60369873E-002,1.42593384E-002,1.84783936E-002,-2.85797119E-002,-1.3999939E-003,2.87780762E-002,1.05529785E-001,1.06124878E-002,5.32836914E-002,-4.1885376E-003,6.55517578E-002,3.42712402E-002,1.61647797E-004,-4.58679199E-002,-7.44247437E-003,9.42993164E-003,1.66778564E-002,1.28250122E-002,-8.39710236E-004,2.96478271E-002,-8.44573975E-003,1.46255493E-002,3.18603516E-002,-8.29219818E-004,1.22451782E-002,1.48162842E-002,-7.60498047E-002,-1.95617676E-002,-7.96508789E-003,7.72857666E-003,1.98669434E-002,7.57217407E-003,-2.784729E-002,1.18560791E-002,-1.57012939E-002,1.47399902E-002,4.78363037E-003,9.6206665E-003,1.02462769E-002,1.73339844E-002,7.65991211E-003,9.14001465E-003,-2.96936035E-002,1.89819336E-002,1.47171021E-002,-2.25067139E-002,7.36694336E-002,-1.96228027E-002,-1.59301758E-002,3.00750732E-002,-4.96520996E-002,2.52838135E-002,-1.36871338E-002,2.82478333E-003,2.21405029E-002,1.72576904E-002,2.87322998E-002,-1.25789642E-003,-1.88598633E-002,-2.86407471E-002,-9.63687897E-004,1.30653381E-003,1.35040283E-002,-1.70612335E-003,-9.16290283E-003,-5.75637817E-003,1.12075806E-002,-2.36358643E-002,-1.36184692E-002,-1.74560547E-002,2.13470459E-002,-3.49235535E-003,2.00271606E-003,1.35421753E-002,-1.77154541E-002,-1.87988281E-002,5.55725098E-002,-2.41088867E-002,-6.05773926E-003,4.03137207E-002,6.94274902E-003,-1.04370117E-001,4.37316895E-002,2.784729E-002,3.42845917E-004,-5.4473877E-003,3.75061035E-002,4.52041626E-003,-1.53198242E-002,1.21231079E-002,2.85797119E-002,3.68499756E-003,-3.16772461E-002,4.21142578E-003,1.92871094E-002,2.09197998E-002,1.63574219E-002,-1.16195679E-002,1.27868652E-002,-1.39083862E-002,-2.55432129E-002,4.38537598E-002,5.01098633E-002,-6.20365143E-004,-5.41381836E-002,-4.52270508E-002,1.35421753E-002,2.46734619E-002,7.41195679E-003,-2.41088867E-002,-9.52148438E-003,-5.22994995E-003,1.45339966E-002,-2.02331543E-002,-1.30615234E-002,-6.95800781E-003,-1.91497803E-002,-1.59759521E-002,-5.38253784E-003,-8.17108154E-003,-3.15246582E-002,-2.4433136E-003,-7.97271729E-003,3.15551758E-002,2.9258728E-003,-8.6517334E-003,1.4175415E-002,-1.43966675E-002,1.91116333E-003,2.24609375E-002,-3.38134766E-002,-5.18493652E-002,1.71966553E-002,-1.46865845E-002,-4.22973633E-002,-3.57666016E-002,-1.69525146E-002,-8.24737549E-003,-1.34277344E-002,5.31768799E-003,2.98919678E-002,7.36083984E-002,4.34875488E-003,-6.92138672E-002,-9.01794434E-003,-7.61108398E-002,1.32827759E-002,8.59832764E-003,-9.96398926E-003,4.45556641E-003,-1.4175415E-002,1.55105591E-002,-2.25067139E-003,-1.69372559E-002,-4.03594971E-003,-2.59399414E-002,-1.27792358E-002,-5.95474243E-003,4.14733887E-002,4.77218628E-003,5.53894043E-002,-2.87017822E-002,-7.10678101E-003,1.93634033E-002,2.04162598E-002,-6.17218018E-003,1.00021362E-002,-2.17895508E-002,1.06201172E-002,-3.34777832E-002,-3.78417969E-003,1.60369873E-002,-8.62598419E-004,2.51312256E-002,-1.18560791E-002,2.75802612E-003,-1.74560547E-002,-6.34384155E-003,-1.26266479E-002,4.19998169E-003,9.36889648E-003,-4.80957031E-002,-1.51443481E-002,-1.6418457E-002,3.95812988E-002,-2.29644775E-003,3.3203125E-002,7.12280273E-002,-6.51931763E-003,-1.73492432E-002,-7.62176514E-003,-5.078125E-002,-3.61022949E-002,4.98046875E-002,-5.17883301E-002,2.98309326E-002,-4.65698242E-002,-3.68347168E-002,-1.86004639E-002,5.2520752E-002,-3.93981934E-002,-2.80151367E-002,-3.24058533E-003,-1.75628662E-002,-4.26330566E-002,1.98822021E-002,-1.24588013E-002,3.99169922E-002,1.59454346E-002,-1.28555298E-002,3.19519043E-002,-4.14609909E-004,-1.06811523E-003,-7.88879395E-003,2.55737305E-002,1.21841431E-002,-3.23791504E-002,-1.88446045E-002,4.8034668E-002,-3.43017578E-002,-1.21307373E-002,8.09936523E-002,-1.31225586E-002,5.40542603E-003,-4.87060547E-002,1.2260437E-002,1.82952881E-002,-4.0802002E-002,3.80516052E-003,-3.27301025E-003,3.14331055E-002,4.92858887E-002,-1.77154541E-002,2.37579346E-002,2.24304199E-002,-1.72424316E-002,2.05078125E-002,-2.1648407E-003,7.07244873E-003,3.41491699E-002,9.55963135E-003,1.92260742E-002,-7.17926025E-003,-8.86535645E-003,-4.27627563E-003,-1.30386353E-002,-1.70135498E-002,3.23791504E-002,-2.63061523E-002,2.54211426E-002,-4.02832031E-003,-1.66893005E-003,5.13305664E-002,-1.31607056E-002,-4.55627441E-002,-5.90209961E-002,4.56237793E-002,-6.14929199E-002,2.86407471E-002,8.32519531E-002,-5.72814941E-002,1.10244751E-002,5.04455566E-002,-1.83563232E-002,9.2124939E-004,1.2588501E-002,-3.69567871E-002,-2.53601074E-002,1.28479004E-002,2.62145996E-002,-3.97949219E-002,1.28555298E-002,-3.09906006E-002,3.15308571E-005,-6.47735596E-003,3.11279297E-002,3.44238281E-002,-5.81359863E-003,-3.00598145E-002,-1.41143799E-002,4.44946289E-002,6.53686523E-002,1.35345459E-002,2.88848877E-002,-1.27029419E-002,-1.09767914E-003,5.28259277E-002,-4.60205078E-002,1.63879395E-002,-9.95635986E-003,8.49914551E-003,-1.58882141E-003,1.84936523E-002,2.91137695E-002,4.8866272E-003,-4.6005249E-003,1.2802124E-002,-3.68690491E-003,6.54459E-005,-4.23278809E-002,1.18026733E-002,-2.75268555E-002,-2.97851562E-002,-2.39257812E-002,-6.20422363E-002,1.09558105E-002,-4.28009033E-003,-1.44882202E-002,9.10949707E-003,-2.19268799E-002,1.3053894E-002,1.74713135E-002,-4.76989746E-002,-1.74407959E-002,4.94766235E-003,-1.89361572E-002,1.99737549E-002,2.05230713E-002,4.43725586E-002,1.9317627E-002,4.47692871E-002,-8.85772705E-003,4.98962402E-003,-3.81469727E-002,-9.30786133E-003,-1.00402832E-002,-2.59094238E-002,1.93481445E-002,-5.41687012E-002,7.8086853E-003,-2.31170654E-003,-4.28161621E-002,3.03649902E-002,-1.41525269E-002,1.06735229E-002,-3.93676758E-002,-3.53050232E-003,3.56864929E-003,4.07714844E-002,4.55627441E-002,-1.05514526E-002,6.87789917E-003,3.0040741E-003,4.19998169E-003,-2.03399658E-002,2.42614746E-002,6.03795052E-005,1.09939575E-002,3.72009277E-002,-1.52740479E-002,-5.2986145E-003,-4.11376953E-002,6.4453125E-002,2.82592773E-002,-1.42974854E-002,-2.00805664E-002,2.52227783E-002,1.21154785E-002,5.59616089E-003,-1.2254715E-003,4.40368652E-002,1.16882324E-002,-1.94854736E-002,-2.32391357E-002,4.75158691E-002,-6.00585938E-002,-9.03320312E-002,-1.0546875E-001,-6.99462891E-002,-2.59857178E-002,-6.5246582E-002,-4.09545898E-002,-2.18009949E-003,-2.65350342E-002,1.63879395E-002,-2.42614746E-003,4.20761108E-003,2.57568359E-002,-4.13513184E-002,3.35083008E-002,-8.74633789E-002,-2.90489197E-003,-2.43377686E-002,7.82775879E-003,3.98864746E-002,4.4921875E-002,-8.36849213E-004,-9.16290283E-003,-4.66918945E-002,-1.93634033E-002,1.53579712E-002,2.5100708E-002,-4.2755127E-002,-1.23596191E-002,1.94549561E-002,-5.88989258E-002,-7.31201172E-002,-3.83605957E-002,-5.09033203E-002,3.41186523E-002,2.75421143E-002,8.09936523E-002,-2.56500244E-002,4.22668457E-002,-1.11312866E-002,2.30255127E-002,-1.87835693E-002,-3.01055908E-002,2.82440186E-002,2.24494934E-003,-4.35256958E-003,-1.2046814E-002,7.24487305E-002,2.08892822E-002,2.79388428E-002,-5.55419922E-002,-4.63256836E-002,-1.77612305E-002,2.5100708E-002,2.78015137E-002,1.30844116E-002,-2.72521973E-002,-2.46124268E-002,9.69696045E-003,1.02844238E-002,9.10186768E-003,3.87191772E-004,-3.31115723E-002,3.41186523E-002,-2.47764587E-003,-2.87017822E-002,3.40938568E-004,-4.46472168E-002,-6.67572021E-003,3.94058228E-003,2.07977295E-002,4.25415039E-002,1.4503479E-002,-7.9498291E-003,1.09863281E-003,2.41699219E-002,-4.72717285E-002,5.02929688E-002,-2.18353271E-002,-2.13012695E-002,-7.70874023E-002,4.2175293E-002,3.16772461E-002,1.56402588E-002,-1.12670898E-001,4.08630371E-002,-4.00695801E-002,7.55615234E-002,2.88009644E-003,6.34765625E-003,-1.45874023E-002,-1.64794922E-002,1.94854736E-002,-2.61230469E-002,2.77519226E-003,1.171875E-002,-2.76031494E-002,-2.3147583E-002,-1.73187256E-002,1.49765015E-002,-2.12249756E-002,5.2734375E-002,-5.1574707E-002,4.33731079E-003,9.88769531E-003,1.82342529E-002,5.04684448E-003,7.33566284E-003,2.24304199E-002,3.67736816E-002,6.14013672E-002,-2.53753662E-002,4.52041626E-003,5.05828857E-003,-3.75976562E-002,-4.66918945E-002,-6.63280487E-004,5.68008423E-003,4.11987305E-002,-2.65960693E-002,-2.40802765E-005,1.14364624E-002,3.21350098E-002,1.72424316E-002,-4.02832031E-002,7.07397461E-002,2.19268799E-002,-2.46582031E-002,1.51290894E-002,3.43513489E-003,-2.40478516E-002,2.36968994E-002,-6.90917969E-002,4.63256836E-002,-2.67028809E-002,-1.55258179E-002,-3.22570801E-002,6.35910034E-003,2.54821777E-002,-9.0637207E-003,1.56784058E-003,-3.20129395E-002,2.32849121E-002,8.46862793E-003,2.63671875E-002,2.25830078E-002,1.36375427E-003,-5.12084961E-002,8.5144043E-003,-1.39083862E-002,6.78539276E-004,-2.31323242E-002,-2.88009644E-003,1.49383545E-002,-9.39941406E-003,-3.73535156E-002,-6.5612793E-003,1.49383545E-002,2.27508545E-002,2.16064453E-002,-1.1510849E-003,-5.89370728E-004,-2.39562988E-002,-6.65664673E-003,2.22969055E-003,-1.14212036E-002,8.97979736E-003,2.44140625E-002,-3.64112854E-003,3.46755981E-003,5.43212891E-003,-1.6374588E-003,-1.21459961E-002,-2.69470215E-002,-1.20544434E-002,1.0383606E-002,-2.92205811E-002,-3.88183594E-002,-1.94244385E-002,-3.18908691E-002,-3.50952148E-002,-1.2008667E-002,3.39126587E-003,-7.81860352E-002,4.54711914E-002,-2.95448303E-003,1.30386353E-002,1.89819336E-002,4.83398438E-002,1.2550354E-002,8.69750977E-002,2.00271606E-003,-4.54101562E-002,3.05366516E-003,1.32446289E-002,6.22558594E-003,2.72979736E-002,1.94244385E-002,-4.17175293E-002,-2.97851562E-002,-4.40673828E-002,1.57775879E-002,-4.64782715E-002,2.26898193E-002,-1.10351562E-001,-1.56402588E-002,-4.57458496E-002,-4.67681885E-003,-2.80618668E-004,-1.14440918E-002,4.13513184E-002,5.96237183E-003,-2.70843506E-002,3.75976562E-002,-3.21350098E-002,2.66723633E-002,-1.62353516E-002,1.36871338E-002,1.57642365E-003,-1.22528076E-002,-3.52783203E-002,-7.97271729E-003,1.01547241E-002]\n",
+              "type" : "TABLE"
+            }
+          ],
+          "forms" : "[]"
+        },
+        "relations" : [ ],
+        "dynamicFormParams" : "{}"
+      },
+      {
+        "row" : 0,
+        "col" : 0,
+        "sizeX" : 0,
+        "width" : 0,
+        "title" : null,
+        "hasTitle" : false,
+        "message" : [
+          "%script",
+          "--list all docs stored in RAG_VECTORS",
+          "SELECT distinct JSON_VALUE(attributes, '$.object_name') source FROM RAG_VECTORS"
+        ],
+        "selectedVisualization" : "raw",
+        "visualizationConfig" : null,
+        "hideCode" : false,
+        "hideResult" : false,
+        "hideGutter" : true,
+        "hideVizConfig" : false,
+        "hideInIFrame" : false,
+        "enabled" : true,
+        "forms" : "[]",
+        "result" : {
+          "startTime" : 1752521668293,
+          "endTime" : 1752521668705,
+          "interpreter" : "script.low",
+          "taskStatus" : "SUCCESS",
+          "status" : "SUCCESS",
+          "results" : [
+            {
+              "message" : "\nSOURCE                    \nroom_view.txt             \ngreat_expectations.txt    \nwar_peace.txt             \nlittle_women.txt          \ndorian_gray.txt           \nwuthering_heights.txt     \ndracula.txt               \ngreen_gables.txt          \nmoby_dick.txt             \nfrankenstein.txt          \nmonte_christo.txt         \nimportance_earnest.txt    \nsherlock_holmes.txt       \nalice_wonderland.txt      \n\nSOURCE                 \nchristmas_carol.txt    \ngreat_gatsby.txt       \npride_prejudice.txt    \nromeo_juliet.txt       \njeckyll_hyde.txt       \nsimple_sabotage.txt    \n\n20 rows selected. \n\n",
+              "type" : "TEXT"
+            }
+          ],
+          "forms" : "[]"
+        },
+        "relations" : [ ],
+        "dynamicFormParams" : "{}"
+      },
+      {
+        "row" : 0,
+        "col" : 0,
+        "sizeX" : 0,
+        "width" : 12,
+        "title" : null,
+        "hasTitle" : false,
+        "message" : [
+          "%script",
+          "-- tell session to use RAG_profile with Select-AI-RAG",
+          "BEGIN",
+          "    DBMS_CLOUD_AI.SET_PROFILE(profile_name => 'RAG_PROFILE');",
+          "END;",
+          "/",
+          "SELECT DBMS_CLOUD_AI.GET_PROFILE from DUAL;"
+        ],
+        "selectedVisualization" : "raw",
+        "visualizationConfig" : null,
+        "hideCode" : false,
+        "hideResult" : false,
+        "hideGutter" : true,
+        "hideVizConfig" : false,
+        "hideInIFrame" : false,
+        "enabled" : true,
+        "forms" : "[]",
+        "result" : {
+          "startTime" : 1752607783672,
+          "endTime" : 1752607784053,
+          "interpreter" : "script.low",
+          "taskStatus" : "SUCCESS",
+          "status" : "SUCCESS",
+          "results" : [
+            {
+              "message" : "\nPL/SQL procedure successfully completed.\n\n\n---------------------------\n\nGET_PROFILE      \n\"RAG_PROFILE\"    \n\n\n---------------------------\n",
+              "type" : "TEXT"
+            }
+          ],
+          "forms" : "[]"
+        },
+        "relations" : [ ],
+        "dynamicFormParams" : "{}"
+      },
+      {
+        "row" : 0,
+        "col" : 0,
+        "sizeX" : 0,
+        "width" : 12,
+        "title" : null,
+        "hasTitle" : false,
+        "message" : [
+          "%script",
+          "--use Select AI RAG to ask about a Sherlock Holmes story",
+          "SELECT AI NARRATE",
+          "\"who stole the blue CARbuncle?\";"
+        ],
+        "selectedVisualization" : "raw",
+        "visualizationConfig" : null,
+        "hideCode" : false,
+        "hideResult" : false,
+        "hideGutter" : true,
+        "hideVizConfig" : false,
+        "hideInIFrame" : false,
+        "enabled" : true,
+        "forms" : "[]",
+        "result" : {
+          "startTime" : 1752607787905,
+          "endTime" : 1752607788413,
+          "interpreter" : "script.low",
+          "taskStatus" : "ERROR",
+          "status" : "ERROR",
+          "results" : [
+            {
+              "message" : "\nError starting at line : 2 in command -\nSELECT AI NARRATE\n\"who stole the blue CARbuncle?\"\nError at Command Line : 3 Column : 1\nError report -\nSQL Error: ORA-20401: Authorization failed for URI -\nhttps://inference.generativeai.us-chicago-1.oci.oraclecloud.com/20231130/actions\n/embedText\nORA-06512: at \"C##CLOUD$SERVICE.DBMS_CLOUD\", line 2233\nORA-06512: at \"C##CLOUD$SERVICE.DBMS_CLOUD_AI\", line 16034\nORA-06512: at line 1\n\nhttps://docs.oracle.com/error-help/db/ora-20401/\n\nMore Details :\nhttps://docs.oracle.com/error-help/db/ora-20401/\nhttps://docs.oracle.com/error-help/db/ora-06512/\n\n---------------------------\n",
+              "type" : "TEXT"
+            }
+          ],
+          "forms" : "[]"
+        },
+        "relations" : [ ],
+        "dynamicFormParams" : "{}"
+      },
+      {
+        "row" : 0,
+        "col" : 0,
+        "sizeX" : 0,
+        "width" : 12,
+        "title" : null,
+        "hasTitle" : false,
+        "message" : [
+          "%script",
+          "--ask about Great Gatsby",
+          "SELECT AI NARRATE",
+          "\"who does Jay Gatsby love?\";"
+        ],
+        "selectedVisualization" : "raw",
+        "visualizationConfig" : null,
+        "hideCode" : false,
+        "hideResult" : false,
+        "hideGutter" : true,
+        "hideVizConfig" : false,
+        "hideInIFrame" : false,
+        "enabled" : true,
+        "forms" : "[]",
+        "result" : {
+          "startTime" : 1752521704869,
+          "endTime" : 1752521710703,
+          "interpreter" : "script.low",
+          "taskStatus" : "SUCCESS",
+          "status" : "SUCCESS",
+          "results" : [
+            {
+              "message" : "\nRESPONSE                                                                                                                                                                               \nJay Gatsby loves Daisy. He is overwhelmingly aware of her youth and mystery, and he feels married to her. He insists that Daisy loves him too, and he wants to speak to her alone. \n\nSources:\n  - great_gatsby.txt (https://objectstorage.us-chicago-1.oraclecloud.com/n/orasenatdpltintegration03/b/RagBucket/o/rag/doc/great_gatsby.txt)    \n\n\n---------------------------\n",
+              "type" : "TEXT"
+            }
+          ],
+          "forms" : "[]"
+        },
+        "relations" : [ ],
+        "dynamicFormParams" : "{}"
+      },
+      {
+        "row" : 0,
+        "col" : 0,
+        "sizeX" : 0,
+        "width" : 12,
+        "title" : null,
+        "hasTitle" : false,
+        "message" : [
+          "%script",
+          "--ask a Wuthering Heights question",
+          "SELECT AI NARRATE",
+          "\"who does Heathcliff fight with?\";"
+        ],
+        "selectedVisualization" : "raw",
+        "visualizationConfig" : null,
+        "hideCode" : false,
+        "hideResult" : false,
+        "hideGutter" : true,
+        "hideVizConfig" : false,
+        "hideInIFrame" : false,
+        "enabled" : true,
+        "forms" : "[]",
+        "result" : {
+          "startTime" : 1752521715526,
+          "endTime" : 1752521722066,
+          "interpreter" : "script.low",
+          "taskStatus" : "SUCCESS",
+          "status" : "SUCCESS",
+          "results" : [
+            {
+              "message" : "\nRESPONSE                                                                                                                                                                                                                                                                                                            \nHeathcliff fights with Hindley and also has a confrontation with Edgar Linton. In one instance, Hindley knocks Heathcliff under the feet of a horse, and in another, Heathcliff threatens to fight Edgar Linton, but is deterred by Catherine, who warns him that Edgar will return with pistols and assistants.\n\nSources:\n  - wuthering_heights.txt (https://objectstorage.us-chicago-1.oraclecloud.com/n/orasenatdpltintegration03/b/RagBucket/o/rag/doc/wuthering_heights.txt)    \n\n\n---------------------------\n",
+              "type" : "TEXT"
+            }
+          ],
+          "forms" : "[]"
+        },
+        "relations" : [ ],
+        "dynamicFormParams" : "{}"
+      },
+      {
+        "row" : 0,
+        "col" : 0,
+        "sizeX" : 0,
+        "width" : 12,
+        "title" : null,
+        "hasTitle" : false,
+        "message" : [
+          "%script",
+          "--Moby Dick question",
+          "SELECT AI NARRATE",
+          "\"What is the name of Ahab's ship?\";"
+        ],
+        "selectedVisualization" : "raw",
+        "visualizationConfig" : null,
+        "hideCode" : false,
+        "hideResult" : false,
+        "hideGutter" : true,
+        "hideVizConfig" : false,
+        "hideInIFrame" : false,
+        "enabled" : true,
+        "forms" : "[]",
+        "result" : {
+          "startTime" : 1752521726063,
+          "endTime" : 1752521730398,
+          "interpreter" : "script.low",
+          "taskStatus" : "SUCCESS",
+          "status" : "SUCCESS",
+          "results" : [
+            {
+              "message" : "\nRESPONSE                                                                                                                                  \nThe name of Ahab's ship is the Pequod.\n\nSources:\n  - moby_dick.txt (https://objectstorage.us-chicago-1.oraclecloud.com/n/orasenatdpltintegration03/b/RagBucket/o/rag/doc/moby_dick.txt)    \n\n\n---------------------------\n",
+              "type" : "TEXT"
+            }
+          ],
+          "forms" : "[]"
+        },
+        "relations" : [ ],
+        "dynamicFormParams" : "{}"
+      },
+      {
+        "row" : 0,
+        "col" : 0,
+        "sizeX" : 0,
+        "width" : 0,
+        "title" : null,
+        "hasTitle" : false,
+        "message" : [
+          "%sql",
+          "--inspect results of vector-similarity search",
+          "SELECT AI RUNSQL",
+          "\"What is the name of Ahab's ship?\";"
+        ],
+        "selectedVisualization" : "raw",
+        "visualizationConfig" : null,
+        "hideCode" : false,
+        "hideResult" : false,
+        "hideGutter" : true,
+        "hideVizConfig" : false,
+        "hideInIFrame" : false,
+        "enabled" : true,
+        "forms" : "[]",
+        "result" : {
+          "startTime" : 1752521736908,
+          "endTime" : 1752521737575,
+          "interpreter" : "sql.low",
+          "taskStatus" : "SUCCESS",
+          "status" : "SUCCESS",
+          "results" : [
+            {
+              "message" : "DATA\tSOURCE\tURL\tSCORE\tSTART_OFFSET\tEND_OFFSET\nod!” cried the English Captain, to whom the question was put.  “What’s the matter? He was heading east, I think.—Is your Captain  crazy?” whispering Fedallah.    But Fedallah, putting a finger on his lip, slid over the bulwarks to  take the boat’s steering oar, and Ahab, swinging the cutting-tackle  towards him, commanded the ship’s sailors to stand by to lower.    In a moment he was standing in the boat’s stern, and the Manilla men  were springing to their oars. In vain the English Captain hailed him.  With back to the stranger ship, and face set like a flint to his own,  Ahab stood upright till alongside of the Pequod.      CHAPTER 101. The Decanter.    Ere the English ship fades from sight, be it set down here, that she  hailed from London, and was named after the late Samuel Enderby,  merchant of that city, the original of the famous whaling house of  Enderby & Sons; a house which in my poor whaleman’s opinion, comes not  far behind the united royal houses of the Tudors and Bourbons, in point  of real his\tmoby_dick.txt\thttps://objectstorage.us-chicago-1.oraclecloud.com/n/orasenatdpltintegration03/b/RagBucket/o/rag/doc/moby_dick.txt\t0.59\t974401\t975424\nto the surface again, far  off the other bow, but within a few yards of Ahab’s boat, where, for a  time, he lay quiescent.    “I turn my body from the sun. What ho, Tashtego! let me hear thy  hammer. Oh! ye three unsurrendered spires of mine; thou uncracked keel;  and only god-bullied hull; thou firm deck, and haughty helm, and  Pole-pointed prow,—death-glorious ship! must ye then perish, and  without me? Am I cut off from the last fond pride of meanest  shipwrecked captains? Oh, lonely death on lonely life! Oh, now I feel  my topmost greatness lies in my topmost grief. Ho, ho! from all your  furthest bounds, pour ye now in, ye bold billows of my whole foregone  life, and top this one piled comber of my death! Towards thee I roll,  thou all-destroying but unconquering whale; to the last I grapple with  thee; from hell’s heart I stab at thee; for hate’s sake I spit my last  breath at thee. Sink all coffins and all hearses to one common pool!  and since neither can be mine, let me then tow to pieces, while stil\tmoby_dick.txt\thttps://objectstorage.us-chicago-1.oraclecloud.com/n/orasenatdpltintegration03/b/RagBucket/o/rag/doc/moby_dick.txt\t0.59\t1236481\t1237504\n Pequod would sweep almost  all the known Sperm Whale cruising grounds of the world, previous to  descending upon the Line in the Pacific; where Ahab, though everywhere  else foiled in his pursuit, firmly counted upon giving battle to Moby  Dick, in the sea he was most known to frequent; and at a season when he  might most reasonably be presumed to be haunting it.    But how now? in this zoned quest, does Ahab touch no land? does his  crew drink air? Surely, he will stop for water. Nay. For a long time,  now, the circus-running sun has raced within his fiery ring, and needs  no sustenance but what’s in himself. So Ahab. Mark this, too, in the  whaler. While other hulls are loaded down with alien stuff, to be  transferred to foreign wharves; the world-wandering whale-ship carries  no cargo but herself and crew, their weapons and their wants. She has a  whole lake’s contents bottled in her ample hold. She is ballasted with  utilities; not altogether with unusable pig-lead and kentledge. She  carries years’ wate\tmoby_dick.txt\thttps://objectstorage.us-chicago-1.oraclecloud.com/n/orasenatdpltintegration03/b/RagBucket/o/rag/doc/moby_dick.txt\t0.59\t841921\t842944\name Ahab alone  from his cabin. Taking a few turns on the quarter-deck, he paused to  gaze over the side, then slowly getting into the main-chains he took  Stubb’s long spade—still remaining there after the whale’s  decapitation—and striking it into the lower part of the half-suspended  mass, placed its other end crutch-wise under one arm, and so stood  leaning over with eyes attentively fixed on this head.    It was a black and hooded head; and hanging there in the midst of so  intense a calm, it seemed the Sphynx’s in the desert. “Speak, thou vast  and venerable head,” muttered Ahab, “which, though ungarnished with a  beard, yet here and there lookest hoary with mosses; speak, mighty  head, and tell us the secret thing that is in thee. Of all divers, thou  hast dived the deepest. That head upon which the upper sun now gleams,  has moved amid this world’s foundations. Where unrecorded names and  navies rust, and untold hopes and anchors rot; where in her murderous  hold this frigate earth is ballasted with b\tmoby_dick.txt\thttps://objectstorage.us-chicago-1.oraclecloud.com/n/orasenatdpltintegration03/b/RagBucket/o/rag/doc/moby_dick.txt\t0.58\t693121\t694144\nrustful of all aliens, unless they hailed from Cape Cod or the  Vineyard.    “But what takes thee a-whaling? I want to know that before I think of  shipping ye.”    “Well, sir, I want to see what whaling is. I want to see the world.”    “Want to see what whaling is, eh? Have ye clapped eye on Captain Ahab?”    “Who is Captain Ahab, sir?”    “Aye, aye, I thought so. Captain Ahab is the Captain of this ship.”    “I am mistaken then. I thought I was speaking to the Captain himself.”    “Thou art speaking to Captain Peleg—that’s who ye are speaking to,  young man. It belongs to me and Captain Bildad to see the Pequod fitted  out for the voyage, and supplied with all her needs, including crew. We  are part owners and agents. But as I was going to say, if thou wantest  to know what whaling is, as thou tellest ye do, I can put ye in a way  of finding it out before ye bind yourself to it, past backing out. Clap  eye on Captain Ahab, young man, and thou wilt find that he has only one  leg.”    “What do you mean, sir? \tmoby_dick.txt\thttps://objectstorage.us-chicago-1.oraclecloud.com/n/orasenatdpltintegration03/b/RagBucket/o/rag/doc/moby_dick.txt\t0.57\t178561\t179584\n",
+              "type" : "TABLE"
+            }
+          ],
+          "forms" : "[]"
+        },
+        "relations" : [ ],
+        "dynamicFormParams" : "{}"
+      },
+      {
+        "row" : 0,
+        "col" : 0,
+        "sizeX" : 0,
+        "width" : 0,
+        "title" : null,
+        "hasTitle" : false,
+        "message" : [
+          "%script",
+          "--Christmas Carol",
+          "SELECT AI NARRATE",
+          "\"what does Scrooge think about Christmas?\";"
+        ],
+        "selectedVisualization" : "raw",
+        "visualizationConfig" : null,
+        "hideCode" : false,
+        "hideResult" : false,
+        "hideGutter" : true,
+        "hideVizConfig" : false,
+        "hideInIFrame" : false,
+        "enabled" : true,
+        "forms" : "[]",
+        "result" : {
+          "startTime" : 1752521763787,
+          "endTime" : 1752521764114,
+          "interpreter" : "script.low",
+          "taskStatus" : "SUCCESS",
+          "status" : "SUCCESS",
+          "results" : [
+            {
+              "message" : "\nRESPONSE                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             \nScrooge thinks that Christmas is a time for paying bills without money, a time for finding yourself a year older and not an hour richer, and a time for balancing your books. He believes that it's a time when \"Want is keenly felt, and Abundance rejoices\" but he doesn't make merry himself at Christmas and can't afford to make idle people merry. He also thinks that those who are badly off must go to establishments that he helps to support, and if they would rather die, they had better do it and decrease the surplus population.\n\nSources:\n  - christmas_carol.txt (https://objectstorage.us-chicago-1.oraclecloud.com/n/orasenatdpltintegration03/b/RagBucket/o/rag/doc/christmas_carol.txt)    \n\n\n---------------------------\n",
+              "type" : "TEXT"
+            }
+          ],
+          "forms" : "[]"
+        },
+        "relations" : [ ],
+        "dynamicFormParams" : "{}"
+      },
+      {
+        "row" : 0,
+        "col" : 0,
+        "sizeX" : 0,
+        "width" : 0,
+        "title" : null,
+        "hasTitle" : false,
+        "message" : [
+          "%script",
+          "-- use 'SELECT AI CHAT' to bypass RAG and ask LLM about Christmas Carol",
+          "SELECT AI CHAT ",
+          "\"what does Scrooge think about Christmas?\";"
+        ],
+        "selectedVisualization" : "raw",
+        "visualizationConfig" : null,
+        "hideCode" : false,
+        "hideResult" : false,
+        "hideGutter" : true,
+        "hideVizConfig" : false,
+        "hideInIFrame" : false,
+        "enabled" : true,
+        "forms" : "[]",
+        "result" : {
+          "startTime" : 1752521801130,
+          "endTime" : 1752521827286,
+          "interpreter" : "script.low",
+          "taskStatus" : "SUCCESS",
+          "status" : "SUCCESS",
+          "results" : [
+            {
+              "message" : "\nRESPONSE                                                                                                                                                                                                                                                                                                                \nA great question about the infamous Ebenezer Scrooge!\n\nAccording to Charles Dickens' classic novel \"A Christmas Carol\", Scrooge thinks that Christmas is a \"humbug\". He believes it's a waste of time and money, and that people only pretend to be merry and charitable during the holiday season. He sees Christmas as a nuisance that disrupts his business and profits.\n\nIn fact, when his nephew, Fred, invites him to Christmas dinner, Scrooge responds with his famous line: \"Bah! Humbug!\" This phrase has become synonymous with someone who dislikes or disapproves of Christmas.\n\nHowever, as the story unfolds, Scrooge's visitations from the Ghosts of Christmas Past, Present, and Yet to Come transform his perspective, and he eventually comes to appreciate the true spirit of Christmas.    \n\n\n---------------------------\n",
+              "type" : "TEXT"
+            }
+          ],
+          "forms" : "[]"
+        },
+        "relations" : [ ],
+        "dynamicFormParams" : "{}"
+      },
+      {
+        "row" : 0,
+        "col" : 0,
+        "sizeX" : 0,
+        "width" : 0,
+        "title" : null,
+        "hasTitle" : false,
+        "message" : [
+          "%script",
+          "-- 'SELECT AI SHOWSQL' will (I thought) show the payload going into LLM, but isnt...",
+          "SELECT AI SHOWSQL ",
+          "\"what does Scrooge think about Christmas?\";"
+        ],
+        "selectedVisualization" : "raw",
+        "visualizationConfig" : null,
+        "hideCode" : false,
+        "hideResult" : false,
+        "hideGutter" : true,
+        "hideVizConfig" : false,
+        "hideInIFrame" : false,
+        "enabled" : true,
+        "forms" : "[]",
+        "result" : {
+          "startTime" : 1752521836124,
+          "endTime" : 1752521836736,
+          "interpreter" : "script.low",
+          "taskStatus" : "SUCCESS",
+          "status" : "SUCCESS",
+          "results" : [
+            {
+              "message" : "\nRESPONSE                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               \nSELECT data, source, url AS url, ROUND(1-dist_score, 2) AS score, start_offset, end_offset FROM (SELECT data, source, url, start_offset, end_offset, distance AS dist_score FROM (SELECT content AS data, JSON_VALUE(attributes, '$.object_name') source, JSON_VALUE(attributes, '$.location_uri') || JSON_VALUE(attributes, '$.object_name') url,  TO_NUMBER(JSON_VALUE(attributes, '$.start_offset'))    start_offset, TO_NUMBER(JSON_VALUE(attributes, '$.end_offset'))    end_offset,  VECTOR_DISTANCE(embedding, TO_VECTOR(DBMS_CLOUD_AI.GENERATE(profile_name => '\"RAG_PROFILE\"', prompt => '\n\"what does Scrooge think about Christmas?\"', action => 'EMBEDDING')), cosine) distance   FROM \"SAIRAG\".\"RAG_VECTORS\" ) ORDER BY dist_score  FETCH APPROXIMATE FIRST 5 ROWS ONLY)    \n\n\n---------------------------\n",
+              "type" : "TEXT"
+            }
+          ],
+          "forms" : "[]"
+        },
+        "relations" : [ ],
+        "dynamicFormParams" : "{}"
+      },
+      {
+        "row" : 0,
+        "col" : 0,
+        "sizeX" : 0,
+        "width" : 0,
+        "title" : null,
+        "hasTitle" : false,
+        "message" : [
+          "%script",
+          "--Portrait of Dorian Gray",
+          "SELECT AI NARRATE",
+          "\"what happens to Dorian's portrait?\";"
+        ],
+        "selectedVisualization" : "raw",
+        "visualizationConfig" : null,
+        "hideCode" : false,
+        "hideResult" : false,
+        "hideGutter" : true,
+        "hideVizConfig" : false,
+        "hideInIFrame" : false,
+        "enabled" : true,
+        "forms" : "[]",
+        "result" : {
+          "startTime" : 1752521840887,
+          "endTime" : 1752521850532,
+          "interpreter" : "script.low",
+          "taskStatus" : "SUCCESS",
+          "status" : "SUCCESS",
+          "results" : [
+            {
+              "message" : "\nRESPONSE                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 \nDorian's portrait is a central element in the story, and its fate is closely tied to Dorian's own. The portrait, which was painted by Basil Hallward, is described as a masterpiece and a wonderful likeness of Dorian. However, as the story progresses, it becomes clear that the portrait has become a source of obsession and horror for Dorian. He becomes convinced that the portrait is aging instead of him, and that it reflects the true state of his soul. At one point, Dorian says \"If it were only the other way! If it were I who was to be always young, and the picture that was to grow old! For that—for that—I would give everything! Yes, there is nothing in the whole world I would not give! I would give my soul for that!” \n\nIt is also mentioned that the portrait was sent to Selby but got mislaid or stolen on the way, and Dorian never got it back. Later, Basil Hallward considers exhibiting the portrait, but Dorian is strongly opposed to the idea. \n\nSources:\n  - dorian_gray.txt (https://objectstorage.us-chicago-1.oraclecloud.com/n/orasenatdpltintegration03/b/RagBucket/o/rag/doc/dorian_gray.txt)    \n\n\n---------------------------\n",
+              "type" : "TEXT"
+            }
+          ],
+          "forms" : "[]"
+        },
+        "relations" : [ ],
+        "dynamicFormParams" : "{}"
+      }
+    ]
+  }
+]
