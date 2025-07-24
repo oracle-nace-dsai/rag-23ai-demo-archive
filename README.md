@@ -117,9 +117,9 @@ and paste that into the RAG_CREDENTIAL paragraph of OML notebook RAG_books_archi
 
 17 execute OML notebook RAG_books_archive.dsnb to build and and then test the Select-AI-RAG pipeline in ADW/23ai
 
-18 import APEX application f100.sql into APEX
+18 open APEX application and create APEX workspace from existing schema and user defined in step 2
 
-19 user SELECT_AI_USER opens apex app...does user need to create a workspace? use the SELECT_AI_USER workspace?
+19 import APEX application f100.sql into APEX
 
 20 revise the APEX app so that it is aware of your bucket namespace, bucket name, user and tenancy ocids, the private key mentioned above, and the ObjStore paths, via the following steps:
 
